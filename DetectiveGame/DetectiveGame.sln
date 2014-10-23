@@ -5,6 +5,8 @@ Project("{93DAA2E0-60FA-A56C-3C5C-1E8C74EAF350}") = "DetectiveGame", "Assembly-C
 EndProject
 Project("{93DAA2E0-60FA-A56C-3C5C-1E8C74EAF350}") = "DetectiveGame", "Assembly-UnityScript-firstpass.unityproj", "{9B9FE9F4-10E9-D192-CDC1-88BDE5FDD591}"
 EndProject
+Project("{93DAA2E0-60FA-A56C-3C5C-1E8C74EAF350}") = "DetectiveGame", "Assembly-UnityScript.unityproj", "{6F5DE714-7782-0DB0-1AAB-FB5F91BD3721}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,11 +21,15 @@ Global
 		{9B9FE9F4-10E9-D192-CDC1-88BDE5FDD591}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B9FE9F4-10E9-D192-CDC1-88BDE5FDD591}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B9FE9F4-10E9-D192-CDC1-88BDE5FDD591}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F5DE714-7782-0DB0-1AAB-FB5F91BD3721}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F5DE714-7782-0DB0-1AAB-FB5F91BD3721}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F5DE714-7782-0DB0-1AAB-FB5F91BD3721}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F5DE714-7782-0DB0-1AAB-FB5F91BD3721}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-										GlobalSection(MonoDevelopProperties) = preSolution
+																GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
