@@ -1,0 +1,231 @@
+fileFormatVersion: 2
+guid: 2f73bf18ea051fa499e60b3084b42598
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: group
+    100002: polySurface192
+    100004: polySurface193
+    100006: polySurface194
+    100008: polySurface195
+    100010: polySurface196
+    100012: polySurface197
+    100014: polySurface198
+    100016: polySurface199
+    100018: polySurface200
+    100020: polySurface201
+    100022: polySurface202
+    100024: polySurface203
+    100026: transform1
+    100028: transform10
+    100030: transform2
+    100032: transform3
+    100034: transform4
+    100036: transform5
+    100038: transform6
+    100040: transform7
+    100042: transform8
+    100044: transform9
+    100046: //RootNode
+    100048: polySurface204
+    400000: group
+    400002: polySurface192
+    400004: polySurface193
+    400006: polySurface194
+    400008: polySurface195
+    400010: polySurface196
+    400012: polySurface197
+    400014: polySurface198
+    400016: polySurface199
+    400018: polySurface200
+    400020: polySurface201
+    400022: polySurface202
+    400024: polySurface203
+    400026: transform1
+    400028: transform10
+    400030: transform2
+    400032: transform3
+    400034: transform4
+    400036: transform5
+    400038: transform6
+    400040: transform7
+    400042: transform8
+    400044: transform9
+    400046: //RootNode
+    400048: polySurface204
+    2300000: polySurface202
+    2300002: polySurface203
+    2300004: polySurface204
+    3300000: polySurface202
+    3300002: polySurface203
+    3300004: polySurface204
+    4300000: polySurface202
+    4300002: polySurface203
+    4300004: polySurface204
+    7400000: open_door
+    7400002: close_door
+    7400004: open_door //// polySurface203
+    7400006: close_door //// polySurface203
+    7400008: open_door //// polySurface204
+    7400010: close_door //// polySurface204
+    7400012: ajoutpoignee
+    7400014: ajoutpoignee //// polySurface203
+    7400016: ajoutpoignee //// polySurface204
+    9500000: //RootNode
+    11100000: group
+    11100002: polySurface192
+    11100004: polySurface193
+    11100006: polySurface194
+    11100008: polySurface195
+    11100010: polySurface196
+    11100012: polySurface197
+    11100014: polySurface198
+    11100016: polySurface199
+    11100018: polySurface200
+    11100020: polySurface201
+    11100022: polySurface202
+    11100024: polySurface203
+    11100026: transform1
+    11100028: transform10
+    11100030: transform2
+    11100032: transform3
+    11100034: transform4
+    11100036: transform5
+    11100038: transform6
+    11100040: transform7
+    11100042: transform8
+    11100044: transform9
+    11100046: //RootNode
+    11100048: polySurface204
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 2
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: open_door
+      takeName: Take 001
+      firstFrame: 57
+      lastFrame: 96
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: close_door
+      takeName: Take 001
+      firstFrame: 97
+      lastFrame: 120
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: ajoutpoignee
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 56
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .0130000003
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: polySurface203
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 1
+  userData: 
