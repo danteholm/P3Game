@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{56510010-0CC6-E766-C106-787E8837E231}</ProjectGuid>
+	<ProjectGuid>{3F122E60-C60D-0D32-666D-0D08BA801170}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -46,17 +46,22 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Movement.cs" />
+     <Compile Include="Assets\OpenCV\webcamCanny.cs" />
      <Compile Include="Assets\Scripts\Raycast.cs" />
      <Compile Include="Assets\Scripts\doors.cs" />
      <Compile Include="Assets\Scripts\items.cs" />
      <Compile Include="Assets\Scripts\keys.cs" />
+     <Compile Include="Assets\Scripts\soundEffects.cs" />
+     <Compile Include="Assets\Scripts\userInterface.cs" />
+ <Reference Include="OpenCvSharp">
+ <HintPath>C:/Users/Public/Documents/Unity Projects/P3 Game - Raycast, UI and OpenCV/Assets/OpenCV/OpenCvSharp.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{151E90AE-D6E0-D8DA-F99F-C382AC91E69B}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{BF7E883F-286D-BCCB-71F9-E92E2A9CA849}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
-      <Project>{22299124-71B7-3871-435E-CD904E0F6C1D}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
+      <Project>{23A96E95-1046-D0FC-1077-D2B90F2851D9}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{151E90AE-D6E0-D8DA-F99F-C382AC91E69B}</ProjectGuid>
+	<ProjectGuid>{BF7E883F-286D-BCCB-71F9-E92E2A9CA849}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -47,6 +47,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
+ <Reference Include="OpenCvSharp">
+ <HintPath>C:/Users/Public/Documents/Unity Projects/P3 Game - Raycast, UI and OpenCV/Assets/OpenCV/OpenCvSharp.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -7,9 +7,13 @@ public class Raycast : MonoBehaviour {
 	public float distance;
 	RaycastHit objectHit;
 
+	// Bools used for UI related scenarios
+	public bool imLookingAt;
+	public bool playerGotItem;
+
 	// Private variable for the player object
 	GameObject player;
-	
+
 	void Start () {
 
 		// Defines the player object for the created variable at the top of the script
@@ -24,13 +28,18 @@ public class Raycast : MonoBehaviour {
 		Debug.DrawRay (this.transform.position, this.transform.forward * distance, Color.magenta);
 
 		// The raycast itself. Starts from the camera and runs out as defined by the distance variable
-		if (Physics.Raycast (this.transform.position, this.transform.forward, out objectHit, distance)) {
+		// Furthermore, the Raycast ignores objects tagged as "Player" and as "Ground"
+		if (Physics.Raycast (this.transform.position, this.transform.forward, out objectHit, distance) && objectHit.collider.gameObject.tag != "Player" && objectHit.collider.gameObject.tag != "Ground" && objectHit.collider.gameObject.tag != "Static") {
+
+			imLookingAt = true;
 
 			// Outputs a debug message to indicate what object you collided with
 			Debug.Log ("Object: "+objectHit.collider.gameObject.name);
 
 			// Runs if the player presses E while near an object
 			if (Input.GetKeyDown (KeyCode.E)) {
+
+				imLookingAt = false;
 
 				// Outputs a message to indicate what item you picked up
 				Debug.Log ("Received: "+objectHit.collider.gameObject.name);
@@ -40,11 +49,16 @@ public class Raycast : MonoBehaviour {
 				// A tag should also be created for the other specific items that are made
 				if (objectHit.collider.tag == "Keys") {
 
+					playerGotItem = true;
+
 					// Checks if the object you collide with is the key type labeled "normalKey"
 					if (objectHit.collider.gameObject.GetComponent<keys>().whatTypeKey == keys.Keys.normalKey) {
 
 						// Toggles the bool, from the item script, to true when item is picked up
 						player.GetComponent<items>().hasNormalKey = true;
+
+						// Toggles bool to true, which is used for sound effects
+						GameObject.Find ("Player").GetComponent<soundEffects>().gotKey = true;
 
 						// Destroys the object that you interacted with
 						Destroy (objectHit.collider.gameObject);
@@ -63,6 +77,9 @@ public class Raycast : MonoBehaviour {
 
 							// Removes the item from your inventory
 							player.GetComponent<items>().hasNormalKey = false;
+
+							// Toggles bool to true, which is used for sound effects
+							GameObject.Find ("Player").GetComponent<soundEffects>().openDoor = true;
 
 							// There should be a script here which changes the tag of the door to "unlockedDoor"
 
@@ -85,6 +102,9 @@ public class Raycast : MonoBehaviour {
 					// These are the doors that don't require a key to open
 					if (objectHit.collider.gameObject.GetComponent<doors>().whatTypeDoor == doors.Doors.normalDoor) {
 
+						// Toggles bool to true, which is used for sound effects
+						GameObject.Find ("Player").GetComponent<soundEffects>().openDoor = true;
+
 						// <---- ANIMATION GOES HERE ---->
 
 						// For now, just destroy the door until the animation has been created and implemented
@@ -94,7 +114,10 @@ public class Raycast : MonoBehaviour {
 					// Checks if the object you collide with is the door type labeled "unlockedDoor"
 					// These are the doors that have been unlocked by a key
 					if (objectHit.collider.gameObject.GetComponent<doors>().whatTypeDoor == doors.Doors.unlockedDoor) {
-						
+
+						// Toggles bool to true, which is used for sound effects
+						GameObject.Find ("Player").GetComponent<soundEffects>().openDoor = true;
+
 						// <---- ANIMATION GOES HERE ---->
 						
 						// For now, just destroy the door until the animation has been created and implemented
@@ -103,6 +126,12 @@ public class Raycast : MonoBehaviour {
 				}
 
 			}
+
+		// If the player is not looking at the object, then it toggles the bool off
+		} else {
+
+			// Sets the bool to false so that the UI element is no longer drawn on the screen
+			imLookingAt = false;
 		}
 	}
 }

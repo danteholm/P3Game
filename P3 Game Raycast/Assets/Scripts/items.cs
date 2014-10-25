@@ -5,5 +5,5 @@ public class items : MonoBehaviour {
 
 	// Rudimentary inventory system for now
 
-	public bool hasNormalKey, hasRustyKey, hasBrokenKey;
+	public bool hasKey1, hasKey2, hasKey3, hasKey4, hasNormalKey;
 }
