@@ -37,7 +37,7 @@ public class Raycast : MonoBehaviour {
 			Debug.Log ("Object: "+objectHit.collider.gameObject.name);
 
 			// Runs if the player presses E while near an object
-			if (Input.GetKeyDown (KeyCode.E)) {
+			if (Input.GetKeyDown (KeyCode.E) && GameObject.Find ("Main Camera").GetComponent<userInterface>().inventoryOpen == false) {
 
 				imLookingAt = false;
 
@@ -121,6 +121,23 @@ public class Raycast : MonoBehaviour {
 						// <---- ANIMATION GOES HERE ---->
 						
 						// For now, just destroy the door until the animation has been created and implemented
+						Destroy (objectHit.collider.gameObject);
+					}
+				}
+
+				// Checks if the object you collide with is tagged as a "Paper"
+				if (objectHit.collider.tag == "Item") {
+
+					// Checks if the object you collide with is the key type labeled "Paper"
+					if (objectHit.collider.gameObject.GetComponent<misc>().whatTypeItem == misc.Misc.paperNote) {
+						
+						// Toggles the bool, from the item script, to true when item is picked up
+						player.GetComponent<items>().hasNote = true;
+						
+						// Toggles bool to true, which is used for sound effects
+						GameObject.Find ("Player").GetComponent<soundEffects>().gotPaper = true;
+						
+						// Destroys the object that you interacted with
 						Destroy (objectHit.collider.gameObject);
 					}
 				}

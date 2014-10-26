@@ -13,6 +13,7 @@ public class soundEffects : MonoBehaviour {
 	public bool openDoor;
 	public bool closeDoor;
 	public bool gotKey;
+	public bool gotPaper;
 
 	void Update () {
 
@@ -44,6 +45,15 @@ public class soundEffects : MonoBehaviour {
 			
 			// Resets the bool back to false
 			gotKey = false;
+		}
+
+		if (gotPaper == true) {
+			
+			// Plays the specified sound effect
+			audio.PlayOneShot (paper);
+			
+			// Resets the bool back to false
+			gotPaper = false;
 		}
 	}
 }

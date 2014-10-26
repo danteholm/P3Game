@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 using System.IO;
-using OpenCvSharp;
+//using OpenCvSharp;
 
 //using OpenCvSharp.Extensions;
 //using System.Windows.Media;
@@ -10,7 +10,7 @@ using OpenCvSharp;
 
 public class webcamCanny : MonoBehaviour
 {
-	public GameObject planeObj;
+/*	public GameObject planeObj;
 	public WebCamTexture webcamTexture;
 	public Texture2D texImage;
 	public string deviceName;
@@ -121,5 +121,5 @@ public class webcamCanny : MonoBehaviour
 			}
 		}
 		//Cv.SaveImage ("C:\\Hasan.jpg", matrix);
-	}
+	} */
 }
