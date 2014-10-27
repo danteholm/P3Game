@@ -5,12 +5,13 @@ public class userInterface : MonoBehaviour {
 
 	// Bool used to determine when to draw the texture on the screen
 	//private bool DrawGUI = false;
-	private bool inventoryOpen;
+	public bool inventoryOpen;
 
 	// Variables used to store the images for the UI
 	public Texture2D uiInteract;
 	public Texture2D uiGotItem;
 	public Texture2D uiInventory;
+	public Texture2D uiNormalKey;
 
 	void OnGUI () {
 
@@ -27,6 +28,20 @@ public class userInterface : MonoBehaviour {
 			// Draws the 2D texture for the inventory screen
 			GUI.DrawTexture (new Rect (Screen.width/3-150, 0, 1024, 1024), uiInventory);
 
+			// <---- ITEMS ---->
+
+			// Checks if player has the key
+			if (GameObject.Find ("Player").GetComponent<items>().hasNormalKey == true) {
+				GUI.DrawTexture (new Rect (Screen.width/4+50, Screen.height/5, 100, 100), uiNormalKey);
+			}
+
+			// Checks if player has the paper
+			if (GameObject.Find ("Player").GetComponent<items>().hasNote == true) {
+				GUI.DrawTexture (new Rect (Screen.width/4+175, Screen.height/5, 100, 100), uiNormalKey);
+			}
+
+			// <---- END ---->
+
 			// Toggles the inventory off
 			if (Input.GetKeyDown (KeyCode.I) && inventoryOpen == true) {
 
@@ -36,14 +51,16 @@ public class userInterface : MonoBehaviour {
 		}
 
 		// Checks, through the Raycast script, when the player is close to an object and is also looking at it
-		if (GameObject.Find ("Main Camera").GetComponent<Raycast>().imLookingAt == true) {
+		// The message does not show up when the inventory is open
+		if (GameObject.Find ("Main Camera").GetComponent<Raycast>().imLookingAt == true && inventoryOpen == false) {
 
 			// Draws the 2D texture for the message popup
 			GUI.DrawTexture (new Rect (Screen.width/3+50, Screen.height/2+50, 512, 64), uiInteract);
 		}
 
 		// Checks, through the Raycast script, when the player has picked up an object
-		if (GameObject.Find ("Main Camera").GetComponent<Raycast>().playerGotItem == true) {
+		// The message does not show up when the inventory is open
+		if (GameObject.Find ("Main Camera").GetComponent<Raycast>().playerGotItem == true && inventoryOpen == false) {
 
 			// Draws the 2D texture for the message popup
 			GUI.DrawTexture (new Rect (Screen.width/3+50, Screen.height/2+50, 512, 64), uiGotItem);
