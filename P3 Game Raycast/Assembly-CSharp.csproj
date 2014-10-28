@@ -47,12 +47,17 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\OpenCV\webcamCanny.cs" />
+     <Compile Include="Assets\Scripts\InfoScreen.cs" />
+     <Compile Include="Assets\Scripts\Item Bar\barShow.cs" />
+     <Compile Include="Assets\Scripts\Item Bar\firstClueShow.cs" />
+     <Compile Include="Assets\Scripts\Item Bar\interactButton.cs" />
      <Compile Include="Assets\Scripts\Raycast.cs" />
      <Compile Include="Assets\Scripts\doors.cs" />
      <Compile Include="Assets\Scripts\items.cs" />
      <Compile Include="Assets\Scripts\keys.cs" />
      <Compile Include="Assets\Scripts\misc.cs" />
      <Compile Include="Assets\Scripts\soundEffects.cs" />
+     <Compile Include="Assets\Scripts\timer.cs" />
      <Compile Include="Assets\Scripts\userInterface.cs" />
   </ItemGroup>
   <ItemGroup>

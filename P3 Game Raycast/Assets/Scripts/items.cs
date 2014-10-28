@@ -9,5 +9,5 @@ public class items : MonoBehaviour {
 	public bool hasKey1, hasKey2, hasKey3, hasKey4, hasNormalKey;
 
 	// Misc. item variables
-	public bool hasNote, hasClue, hasClue2;
+	public bool hasNote, hasClue1, hasClue2;
 }

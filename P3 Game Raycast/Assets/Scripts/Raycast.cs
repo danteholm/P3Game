@@ -93,6 +93,9 @@ public class Raycast : MonoBehaviour {
 
 							// <---- GUI MESSAGE GOES HERE ---->
 
+							// Toggles bool to true, which is used for sound effects
+							GameObject.Find ("Player").GetComponent<soundEffects>().doorIsLocked = true;
+
 							// For now, outputs a debug message until GUI elements have been created and implemented
 							Debug.Log ("This door requires a key!");
 						}
@@ -125,14 +128,27 @@ public class Raycast : MonoBehaviour {
 					}
 				}
 
-				// Checks if the object you collide with is tagged as a "Paper"
-				if (objectHit.collider.tag == "Item") {
+				// Checks if the object you collide with is tagged as an "Item", or "Paper"
+				if (objectHit.collider.tag == "Item" || objectHit.collider.tag == "Paper") {
 
-					// Checks if the object you collide with is the key type labeled "Paper"
+					// Checks if the object you collide with is the item type labeled "paperNote"
 					if (objectHit.collider.gameObject.GetComponent<misc>().whatTypeItem == misc.Misc.paperNote) {
 						
 						// Toggles the bool, from the item script, to true when item is picked up
 						player.GetComponent<items>().hasNote = true;
+						
+						// Toggles bool to true, which is used for sound effects
+						GameObject.Find ("Player").GetComponent<soundEffects>().gotPaper = true;
+						
+						// Destroys the object that you interacted with
+						//Destroy (objectHit.collider.gameObject);
+					}
+
+					// Checks if the object you collide with is the item type labeled "firstClue"
+					if (objectHit.collider.gameObject.GetComponent<misc>().whatTypeItem == misc.Misc.firstClue) {
+						
+						// Toggles the bool, from the item script, to true when item is picked up
+						player.GetComponent<items>().hasClue1 = true;
 						
 						// Toggles bool to true, which is used for sound effects
 						GameObject.Find ("Player").GetComponent<soundEffects>().gotPaper = true;
