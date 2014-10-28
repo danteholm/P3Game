@@ -1,0 +1,87 @@
+fileFormatVersion: 2
+guid: 772a654ea1c7e9446977e21d21520bf4
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: cup
+    100002: //RootNode
+    100004: toothbrus0
+    100006: toothbrus1
+    100008: toothbrus2
+    100010: toothbrus3
+    400000: cup
+    400002: //RootNode
+    400004: toothbrus0
+    400006: toothbrus1
+    400008: toothbrus2
+    400010: toothbrus3
+    2300000: cup
+    2300002: toothbrus0
+    2300004: toothbrus1
+    2300006: toothbrus2
+    2300008: toothbrus3
+    3300000: cup
+    3300002: toothbrus0
+    3300004: toothbrus1
+    3300006: toothbrus2
+    3300008: toothbrus3
+    4300000: cup
+    4300002: toothbrus3
+    4300004: toothbrus2
+    4300006: toothbrus1
+    4300008: toothbrus0
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .100000001
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

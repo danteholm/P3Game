@@ -48,7 +48,11 @@
   <ItemGroup>
      <Compile Include="Assets\Models\Furniture Pack 1 Free\Scripts\MouseOrbitZoom.js" />
      <Compile Include="Assets\Models\Water FX Pack\Scripts\ScrollUV.js" />
+     <Compile Include="Assets\MovementAnimsetProLite\Scripts\MouseOrbit.js" />
+     <None Include="Assets\Models\Badeværelse\archibase.net.txt" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
+     <None Include="Assets\MovementAnimsetProLite\readme.txt" />
+     <None Include="Assets\Models\Diverse\archibase.net.txt" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>C:/Users/Theis/Documents/GitHub/P3Game/DetectiveGame/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>

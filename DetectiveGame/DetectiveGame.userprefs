@@ -1,9 +1,16 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\NewBehaviourScript.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\gameldea\gameldea\Assets\Scripts\SwordBehavior.cs">
     <Files>
-      <File FileName="Assets\NewBehaviourScript.cs" Line="19" Column="4" />
+      <File FileName="..\..\..\gameldea\gameldea\Assets\Scripts\GUICrosshair.cs" Line="10" Column="3" />
+      <File FileName="..\..\..\Projects\runnerGame\Assets\Scripts\GM.cs" Line="45" Column="6" />
+      <File FileName="..\..\..\gameldea\gameldea\Assets\Scripts\SwordBehavior.cs" Line="8" Column="3" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True" />
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
