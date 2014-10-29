@@ -1,8 +1,9 @@
 fileFormatVersion: 2
-guid: 4a7994f3161c6f4498e2aab0a177cf33
+guid: 3fc340925e1db1f4993a6b360b5cc19b
 TextureImporter:
   fileIDToRecycleName:
-    21300000: interactButton
+    21300000: ui-item
+    21300002: uiItem
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -23,7 +24,7 @@ TextureImporter:
   generateCubemap: 0
   seamlessCubemap: 0
   textureFormat: -1
-  maxTextureSize: 1024
+  maxTextureSize: 512
   textureSettings:
     filterMode: 0
     aniso: 1

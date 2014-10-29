@@ -1,37 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Raycasting\Scripts\Raycast.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Raycasting\Scripts\items.cs">
     <Files>
-      <File FileName="Assets\Raycasting\Scripts\doors.cs" Line="10" Column="40" />
-      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" Line="64" Column="2" />
-      <File FileName="Assets\Raycasting\Scripts\Raycast.cs" Line="87" Column="41" />
-      <File FileName="Assets\Raycasting\Scripts\userInterface.cs" Line="140" Column="2" />
-      <File FileName="Assets\Scripts\GUICrosshair.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CharacterControls.cs" Line="15" Column="1" />
+      <File FileName="Assets\Raycasting\Scripts\items.cs" Line="13" Column="2" />
+      <File FileName="Assets\Raycasting\Scripts\Raycast.cs" Line="202" Column="27" />
+      <File FileName="Assets\Raycasting\Scripts\userInterface.cs" Line="117" Column="77" />
+      <File FileName="Assets\Raycasting\Scripts\objectManager.cs" Line="6" Column="63" />
+      <File FileName="Assets\Raycasting\Scripts\soundEffects.cs" Line="9" Column="30" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="Assembly-CSharp" expanded="True">
-            <Node name="Raycasting" expanded="True">
-              <Node name="Scripts" expanded="True">
-                <Node name="Raycast.cs" selected="True" />
-              </Node>
-            </Node>
-            <Node name="Scripts" expanded="True" />
-          </Node>
-          <Node name="Assembly-CSharp-firstpass" expanded="True">
-            <Node name="Standard Assets" expanded="True">
-              <Node name="Character Controllers" expanded="True">
-                <Node name="Sources" expanded="True">
-                  <Node name="Scripts" expanded="True" />
-                </Node>
-              </Node>
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

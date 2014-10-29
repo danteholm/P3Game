@@ -10,6 +10,7 @@ public class Raycast : MonoBehaviour {
 	// Bools used for UI related scenarios
 	public bool imLookingAt;
 	public bool playerGotItem;
+	public bool doorIsLocked;
 
 	// Private variable for the player object
 	GameObject player;
@@ -29,7 +30,7 @@ public class Raycast : MonoBehaviour {
 
 		// The raycast itself. Starts from the camera and runs out as defined by the distance variable
 		// Furthermore, the Raycast ignores objects tagged as "Player" and as "Ground"
-		if (Physics.Raycast (this.transform.position, this.transform.forward, out objectHit, distance) && objectHit.collider.gameObject.tag != "Player" && objectHit.collider.gameObject.tag != "Untagged" && objectHit.collider.gameObject.tag != "Static") {
+		if (Physics.Raycast (this.transform.position, this.transform.forward, out objectHit, distance) && objectHit.collider.gameObject.tag != "Player" && objectHit.collider.gameObject.tag != "Untagged") {
 
 			imLookingAt = true;
 
@@ -37,29 +38,55 @@ public class Raycast : MonoBehaviour {
 			Debug.Log ("Object: "+objectHit.collider.gameObject.name);
 
 			// Runs if the player presses E while near an object
-			if (Input.GetKeyDown (KeyCode.E) && GameObject.Find ("Main Camera").GetComponent<userInterface>().inventoryOpen == false) {
+			if (Input.GetKeyDown (KeyCode.E) /*&& GameObject.Find ("Main Camera").GetComponent<userInterface>().inventoryOpen == false*/) {
 
 				imLookingAt = false;
 
 				// Outputs a message to indicate what item you picked up
-				Debug.Log ("Received: "+objectHit.collider.gameObject.name);
+				//Debug.Log ("Received: "+objectHit.collider.gameObject.name);
 
-				// Checks if the object you collide with is tagged as a "Keys"
+				// Checks if the object you collide with is tagged as "Keys", "Items" or "Paper"
 				// This script can be modified to be used for any type of item so long as the respective scripts connected to it are modified as well
 				// A tag should also be created for the other specific items that are made
-				if (objectHit.collider.tag == "Keys") {
+				if (objectHit.collider.tag == "Keys" || objectHit.collider.tag == "Item" || objectHit.collider.tag == "Paper") {
 
 					playerGotItem = true;
 
 					// Checks if the object you collide with is the key type labeled "normalKey"
-					if (objectHit.collider.gameObject.GetComponent<keys>().whatTypeKey == keys.Keys.normalKey) {
+					if (objectHit.collider.gameObject.GetComponent<objectManager>().whatTypeKey == objectManager.Keys.bedroomKey) {
 
 						// Toggles the bool, from the item script, to true when item is picked up
-						player.GetComponent<items>().hasNormalKey = true;
+						player.GetComponent<items>().hasBedroomKey = true;
 
 						// Toggles bool to true, which is used for sound effects
-						GameObject.Find ("Player").GetComponent<soundEffects>().gotKey = true;
+						player.GetComponent<soundEffects>().gotKey = true;
 
+						// Destroys the object that you interacted with
+						Destroy (objectHit.collider.gameObject);
+					}
+
+					// Checks if the object you collide with is the item type labeled "paperNote"
+					if (objectHit.collider.gameObject.GetComponent<objectManager>().whatTypeItem == objectManager.Misc.paperNote) {
+						
+						// Toggles the bool, from the item script, to true when item is picked up
+						player.GetComponent<items>().hasNote = true;
+						
+						// Toggles bool to true, which is used for sound effects
+						player.GetComponent<soundEffects>().gotPaper = true;
+						
+						// Destroys the object that you interacted with
+						//Destroy (objectHit.collider.gameObject);
+					}
+					
+					// Checks if the object you collide with is the item type labeled "firstClue"
+					if (objectHit.collider.gameObject.GetComponent<objectManager>().whatTypeItem == objectManager.Misc.firstClue) {
+						
+						// Toggles the bool, from the item script, to true when item is picked up
+						player.GetComponent<items>().hasClue1 = true;
+						
+						// Toggles bool to true, which is used for sound effects
+						player.GetComponent<soundEffects>().gotPaper = true;
+						
 						// Destroys the object that you interacted with
 						Destroy (objectHit.collider.gameObject);
 					}
@@ -68,23 +95,23 @@ public class Raycast : MonoBehaviour {
 				// Checks if the object you collide with is tagged as a "Doors"
 				if (objectHit.collider.tag == "Doors") {
 					
-					// Checks if the object you collide with is the door type labeled "lockedDoor"
-					// These are the doors that require keys to open, loaded from the inventory script
-					if (objectHit.collider.gameObject.GetComponent<doors>().whatTypeDoor == doors.Doors.bedroomDoor) {
+					// Checks if the object you collide with is the door type labeled "bedroomDoor"
+					// This door requires a key to open, loaded from the inventory script
+					if (objectHit.collider.gameObject.GetComponent<objectManager>().whatTypeDoor == objectManager.Doors.bedroomDoor) {
 						
 						// Checks, through the items script, if the player has the required key to open this door
-						if (player.GetComponent<items>().hasNormalKey == true) {
+						if (player.GetComponent<items>().hasBedroomKey == true) {
 
 							// Removes the item from your inventory
 							//player.GetComponent<items>().hasNormalKey = false;
 
 							// Toggles bool to true, which is used for sound effects
-							GameObject.Find ("Player").GetComponent<soundEffects>().openDoor = true;
+							player.GetComponent<soundEffects>().openDoor = true;
 
 							// There should be a script here which changes the tag of the door to "unlockedDoor"
 
-							// <---- ANIMATION GOES HERE ---->
-							GameObject.Find("bedroomDoorFrame").animation.Play("open");
+							// Plays the animation to open door
+							GameObject.Find("bedroomDoor").animation.Play("open");
 
 							// For now, just destroy the door until the animation has been created and implemented
 							//Destroy (objectHit.collider.gameObject);
@@ -92,78 +119,98 @@ public class Raycast : MonoBehaviour {
 						// If required object isn't in your inventory
 						} else {
 
-							// <---- GUI MESSAGE GOES HERE ---->
+							// Toggles bool to true, which is used to display message that the door is locked
+							doorIsLocked = true;
 
 							// Toggles bool to true, which is used for sound effects
-							GameObject.Find ("Player").GetComponent<soundEffects>().doorIsLocked = true;
+							player.GetComponent<soundEffects>().doorIsLocked = true;
 
 							// For now, outputs a debug message until GUI elements have been created and implemented
 							Debug.Log ("This door requires a key!");
 						}
 					}
 
-					// Checks if the object you collide with is the door type labeled "normalDoor"
-					// These are the doors that don't require a key to open
-					if (objectHit.collider.gameObject.GetComponent<doors>().whatTypeDoor == doors.Doors.livingroomDoor) {
+					// Checks if the object you collide with is the door type labeled "livingroomDoor"
+					if (objectHit.collider.gameObject.GetComponent<objectManager>().whatTypeDoor == objectManager.Doors.livingroomDoor) {
 
 						// Toggles bool to true, which is used for sound effects
-						GameObject.Find ("Player").GetComponent<soundEffects>().openDoor = true;
+						player.GetComponent<soundEffects>().openDoor = true;
 
-						// <---- ANIMATION GOES HERE ---->
-
-						// For now, just destroy the door until the animation has been created and implemented
+						// Plays the animation to open door
+						GameObject.Find("livingroomDoor").animation.Play("open");
 						//transform.parent.animation.Play("open");
 						//GameObject.Find ("door").transform.parent.animation.Play("open");
-						GameObject.Find("livingroomDoorFrame").animation.Play("open");
 
-					
+						// For now, just destroy the door until the animation has been created and implemented
 						//Destroy (objectHit.collider.gameObject);
 					}
 
-					// Checks if the object you collide with is the door type labeled "unlockedDoor"
-					// These are the doors that have been unlocked by a key
-					if (objectHit.collider.gameObject.GetComponent<doors>().whatTypeDoor == doors.Doors.bathroomDoor) {
+					// Checks if the object you collide with is the door type labeled "bathroomDoor"
+					if (objectHit.collider.gameObject.GetComponent<objectManager>().whatTypeDoor == objectManager.Doors.bathroomDoor) {
 
 						// Toggles bool to true, which is used for sound effects
-						GameObject.Find ("Player").GetComponent<soundEffects>().openDoor = true;
+						player.GetComponent<soundEffects>().openDoor = true;
 
-						// <---- ANIMATION GOES HERE ---->
+						// Plays the animation to open door
+						GameObject.Find("bathroomDoor").animation.Play("open");
 						
 						// For now, just destroy the door until the animation has been created and implemented
-						Destroy (objectHit.collider.gameObject);
-					}
-				}
-
-				// Checks if the object you collide with is tagged as an "Item", or "Paper"
-				if (objectHit.collider.tag == "Item" || objectHit.collider.tag == "Paper") {
-
-					// Checks if the object you collide with is the item type labeled "paperNote"
-					if (objectHit.collider.gameObject.GetComponent<misc>().whatTypeItem == misc.Misc.paperNote) {
-						
-						// Toggles the bool, from the item script, to true when item is picked up
-						player.GetComponent<items>().hasNote = true;
-						
-						// Toggles bool to true, which is used for sound effects
-						GameObject.Find ("Player").GetComponent<soundEffects>().gotPaper = true;
-						
-						// Destroys the object that you interacted with
 						//Destroy (objectHit.collider.gameObject);
 					}
 
-					// Checks if the object you collide with is the item type labeled "firstClue"
-					if (objectHit.collider.gameObject.GetComponent<misc>().whatTypeItem == misc.Misc.firstClue) {
-						
-						// Toggles the bool, from the item script, to true when item is picked up
-						player.GetComponent<items>().hasClue1 = true;
+					// Checks if the object you collide with is the door type labeled "kitchenDoor1"
+					if (objectHit.collider.gameObject.GetComponent<objectManager>().whatTypeDoor == objectManager.Doors.kitchenDoor1) {
 						
 						// Toggles bool to true, which is used for sound effects
-						GameObject.Find ("Player").GetComponent<soundEffects>().gotPaper = true;
+						player.GetComponent<soundEffects>().openDoor = true;
 						
-						// Destroys the object that you interacted with
-						Destroy (objectHit.collider.gameObject);
+						// Plays the animation to open door
+						GameObject.Find("kitchenDoor1").animation.Play("open");
+						
+						// For now, just destroy the door until the animation has been created and implemented
+						//Destroy (objectHit.collider.gameObject);
+					}
+
+					// Checks if the object you collide with is the door type labeled "kitchenDoor2"
+					if (objectHit.collider.gameObject.GetComponent<objectManager>().whatTypeDoor == objectManager.Doors.kitchenDoor2) {
+						
+						// Toggles bool to true, which is used for sound effects
+						player.GetComponent<soundEffects>().openDoor = true;
+						
+						// Plays the animation to open door
+						GameObject.Find("kitchenDoor2").animation.Play("open");
+						
+						// For now, just destroy the door until the animation has been created and implemented
+						//Destroy (objectHit.collider.gameObject);
+					}
+
+					if (objectHit.collider.gameObject.GetComponent<objectManager>().whatTypeDoor == objectManager.Doors.officeDoor) {
+						
+						// Toggles bool to true, which is used for sound effects
+						player.GetComponent<soundEffects>().openDoor = true;
+						
+						// Plays the animation to open door
+						GameObject.Find("officeDoor").animation.Play("open");
+						
+						// For now, just destroy the door until the animation has been created and implemented
+						//Destroy (objectHit.collider.gameObject);
+					}
+
+					if (objectHit.collider.gameObject.GetComponent<objectManager>().whatTypeDoor == objectManager.Doors.frontDoor) {
+
+						// Toggles bool to true, which is used to display message that the door is locked
+						doorIsLocked = true;
+
+						// Toggles bool to true, which is used for sound effects
+						player.GetComponent<soundEffects>().doorIsLocked = true;
+
+						// Plays the animation to open door
+						//GameObject.Find("officeDoor").animation.Play("open");
+						
+						// For now, just destroy the door until the animation has been created and implemented
+						//Destroy (objectHit.collider.gameObject);
 					}
 				}
-
 			}
 
 		// If the player is not looking at the object, then it toggles the bool off

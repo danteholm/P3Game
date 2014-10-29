@@ -5,24 +5,31 @@ public class userInterface : MonoBehaviour {
 
 	// Bool used to determine when to draw the texture on the screen
 	//private bool DrawGUI = false;
-	public bool inventoryOpen;
+	//public bool inventoryOpen;
 	public bool inventoryOn;
 
 	// Variables used to store the images for the UI
 	public Texture2D uiInteract;
 	public Texture2D uiGotItem;
-	public Texture2D uiInventory;
-	public Texture2D uiNormalKey;
+	//public Texture2D uiInventory;
+	public Texture2D uiBedroomKey;
 	public Texture2D uiFirstClue;
 	public Texture2D uiPaperNote;
 	public Texture2D uiBar;
+	public Texture2D uiLockedDoor;
 
 	// Item triggers
 	public bool showKey;
 	public bool showFirstClue;
 
+	// Private variable for the camera
+	GameObject mainCam;
+
 	void Start () {
 		inventoryOn = true;
+
+		// Loads the camera through the variable defined above
+		mainCam = (GameObject.Find ("Main Camera"));
 	}
 
 	void OnGUI () {
@@ -34,8 +41,8 @@ public class userInterface : MonoBehaviour {
 			// <---- ITEMS ---->
 
 			// Checks if player has the key
-			if (GameObject.Find("Player").GetComponent<items>().hasNormalKey == true) {
-				GUI.DrawTexture (new Rect (Screen.width/60, Screen.height/1.13f, 90, 73), uiNormalKey);
+			if (GameObject.Find("Player").GetComponent<items>().hasBedroomKey == true) {
+				GUI.DrawTexture (new Rect (Screen.width/60, Screen.height/1.13f, 90, 73), uiBedroomKey);
 			}
 
 			// Checks if player has the paper
@@ -84,7 +91,7 @@ public class userInterface : MonoBehaviour {
 
 		// Checks, through the Raycast script, when the player is close to an object and is also looking at it
 		// The message does not show up when the inventory is open
-		if (GameObject.Find ("Main Camera").GetComponent<Raycast>().imLookingAt == true && inventoryOpen == false) {
+		if (GameObject.Find ("Main Camera").GetComponent<Raycast>().imLookingAt == true /*&& inventoryOpen == false*/) {
 
 			// Draws the 2D texture for the message popup
 			//GUI.DrawTexture (new Rect (Screen.width/3+50, Screen.height/2+50, 512, 64), uiInteract);
@@ -93,13 +100,24 @@ public class userInterface : MonoBehaviour {
 
 		// Checks, through the Raycast script, when the player has picked up an object
 		// The message does not show up when the inventory is open
-		if (GameObject.Find ("Main Camera").GetComponent<Raycast>().playerGotItem == true && inventoryOpen == false) {
+		if (GameObject.Find ("Main Camera").GetComponent<Raycast>().playerGotItem == true /*&& inventoryOpen == false*/) {
 
 			// Draws the 2D texture for the message popup
 			GUI.DrawTexture (new Rect (Screen.width/3f-25, Screen.height/1.5f, 512, 64), uiGotItem);
 
 			// Starts the HideUI function, which runs for a few seconds, to hide the UI element
 			StartCoroutine("HideUI");
+		}
+
+		// Checks, through the Raycast script, when the player is trying to open a locked door
+		// The message does not show up when the inventory is open
+		if (GameObject.Find ("Main Camera").GetComponent<Raycast>().doorIsLocked == true /*&& inventoryOpen == false*/) {
+			
+			// Draws the 2D texture for the message popup
+			GUI.DrawTexture (new Rect (Screen.width/3f-25, Screen.height/1.5f, 60, 92), uiLockedDoor);
+			
+			// Starts the HideUI function, which runs for a few seconds, to hide the UI element
+			StartCoroutine("DoorLocked");
 		}
 
 		// Checks if player is reading the note
@@ -118,8 +136,17 @@ public class userInterface : MonoBehaviour {
 		GameObject.Find ("Main Camera").GetComponent<Raycast>().playerGotItem = false;
 	}
 
+	IEnumerator DoorLocked () {
+		
+		// Yields after 2 seconds
+		yield return new WaitForSeconds(2);
+		
+		// Sets the "playerGotItem" bool back to false when the timer is up
+		GameObject.Find ("Main Camera").GetComponent<Raycast>().doorIsLocked = false;
+	}
+
 	// Timer function used for when opening inventory
-	IEnumerator InventoryOn () {
+	/*IEnumerator InventoryOn () {
 		
 		// Yields after 0.1 seconds
 		yield return new WaitForSeconds(0.1f);
@@ -136,5 +163,5 @@ public class userInterface : MonoBehaviour {
 		
 		// Sets the "inventoryOpen" bool back to false when the timer is up
 		inventoryOpen = false;
-	}
+	}*/
 }

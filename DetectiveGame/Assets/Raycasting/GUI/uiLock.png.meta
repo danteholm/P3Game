@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 3fc340925e1db1f4993a6b360b5cc19b
+guid: 7d9e920080d420441ac7c7b6db160b04
 TextureImporter:
   fileIDToRecycleName:
-    21300000: ui-item
+    21300000: uiLock
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -23,9 +23,9 @@ TextureImporter:
   generateCubemap: 0
   seamlessCubemap: 0
   textureFormat: -1
-  maxTextureSize: 512
+  maxTextureSize: 1024
   textureSettings:
-    filterMode: 0
+    filterMode: -1
     aniso: 1
     mipBias: -1
     wrapMode: 1
