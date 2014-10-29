@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 5187773fb2b774e44a8994165f1817a4
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - doorOpen: {fileID: 8300000, guid: b1a83a2644d9c6344ab9498a7c5c1ba3, type: 3}
+  - doorClose: {fileID: 8300000, guid: 07c9062e12d618641bb8a10b62fd011a, type: 3}
+  - paper: {fileID: 8300000, guid: 928dac2c1b3d79d43af0ee16bfd1c59a, type: 3}
+  - key: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 

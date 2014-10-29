@@ -47,7 +47,23 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\MovementAnimsetProLite\Scripts\InputWalk.cs" />
+     <Compile Include="Assets\Raycasting\OpenCV\webcamCanny.cs" />
+     <Compile Include="Assets\Raycasting\Scripts\InfoScreen.cs" />
+     <Compile Include="Assets\Raycasting\Scripts\Item Bar\barShow.cs" />
+     <Compile Include="Assets\Raycasting\Scripts\Item Bar\firstClueShow.cs" />
+     <Compile Include="Assets\Raycasting\Scripts\Item Bar\interactButton.cs" />
+     <Compile Include="Assets\Raycasting\Scripts\Movement.cs" />
+     <Compile Include="Assets\Raycasting\Scripts\Raycast.cs" />
+     <Compile Include="Assets\Raycasting\Scripts\doors.cs" />
+     <Compile Include="Assets\Raycasting\Scripts\items.cs" />
+     <Compile Include="Assets\Raycasting\Scripts\keys.cs" />
+     <Compile Include="Assets\Raycasting\Scripts\misc.cs" />
+     <Compile Include="Assets\Raycasting\Scripts\soundEffects.cs" />
+     <Compile Include="Assets\Raycasting\Scripts\timer.cs" />
+     <Compile Include="Assets\Raycasting\Scripts\userInterface.cs" />
+     <Compile Include="Assets\Raycasting\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
      <Compile Include="Assets\Scripts\CharacterControls.cs" />
+     <Compile Include="Assets\Scripts\GUICrosshair.cs" />
      <None Include="Assets\Models\Badeværelse\archibase.net.txt" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\MovementAnimsetProLite\readme.txt" />

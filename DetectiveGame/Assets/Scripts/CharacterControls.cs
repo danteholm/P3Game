@@ -9,8 +9,7 @@ public class CharacterControls : MonoBehaviour {
 	public float speed = 10.0f;
 	public float gravity = 10.0f;
 	public float maxVelocityChange = 10.0f;
-	public bool canJump = true;
-	public float jumpHeight = 2.0f;
+
 	private bool grounded = false;
 	private Animation anim;
 	private bool cutSceneOn = false;
@@ -39,11 +38,9 @@ public class CharacterControls : MonoBehaviour {
 			velocityChange.y = 0;
 			rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
 			
-			// Jump
-			if (canJump && Input.GetButton("Jump")) {
-				rigidbody.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
+		
 			}
-		}
+	
 	//}
 		
 		// We apply gravity manually for more tuning control
@@ -57,9 +54,5 @@ public class CharacterControls : MonoBehaviour {
 		grounded = true;    
 	}
 	
-	float CalculateJumpVerticalSpeed () {
-		// From the jump height and gravity we deduce the upwards speed 
-		// for the character to reach at the apex.
-		return Mathf.Sqrt(2 * jumpHeight * gravity);
-	}
+
 }
