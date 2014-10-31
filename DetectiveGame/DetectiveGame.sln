@@ -1,8 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
-Project("{93DAA2E0-60FA-A56C-3C5C-1E8C74EAF350}") = "DetectiveGame", "Assembly-CSharp-firstpass.csproj", "{FB45972D-2E7B-C702-C0A7-71484521C102}"
-EndProject
 Project("{93DAA2E0-60FA-A56C-3C5C-1E8C74EAF350}") = "DetectiveGame", "Assembly-CSharp.csproj", "{1EC090E2-5B13-D30E-5024-D1CF25A5A009}"
 EndProject
 Project("{93DAA2E0-60FA-A56C-3C5C-1E8C74EAF350}") = "DetectiveGame", "Assembly-UnityScript-firstpass.unityproj", "{9B9FE9F4-10E9-D192-CDC1-88BDE5FDD591}"
@@ -15,10 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FB45972D-2E7B-C702-C0A7-71484521C102}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FB45972D-2E7B-C702-C0A7-71484521C102}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FB45972D-2E7B-C702-C0A7-71484521C102}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FB45972D-2E7B-C702-C0A7-71484521C102}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1EC090E2-5B13-D30E-5024-D1CF25A5A009}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1EC090E2-5B13-D30E-5024-D1CF25A5A009}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EC090E2-5B13-D30E-5024-D1CF25A5A009}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -35,7 +29,7 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																																											GlobalSection(MonoDevelopProperties) = preSolution
+																																																																	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1

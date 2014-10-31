@@ -9,6 +9,7 @@ public class soundEffects : MonoBehaviour {
 	public AudioClip lockedDoor;
 	public AudioClip paper;
 	public AudioClip key;
+	public AudioClip tik;
 
 	// Bools used to determine when to play sound effects
 	public bool openDoor;
@@ -16,6 +17,8 @@ public class soundEffects : MonoBehaviour {
 	public bool doorIsLocked;
 	public bool gotKey;
 	public bool gotPaper;
+
+	public bool activeTik;
 
 	void Update () {
 
@@ -67,5 +70,16 @@ public class soundEffects : MonoBehaviour {
 			// Resets the bool back to false
 			gotPaper = false;
 		}
+		if (activeTik == true) {
+			
+			// Plays the specified sound effect
+			audio.PlayOneShot(tik);
+		
+			audio.loop = true;	
+			activeTik = false;
+			// Resets the bool back to false
+		
+		}
 	}
+
 }

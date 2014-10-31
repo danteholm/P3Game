@@ -56,9 +56,9 @@
      <Compile Include="Assets\Raycasting\Scripts\soundEffects.cs" />
      <Compile Include="Assets\Raycasting\Scripts\timer.cs" />
      <Compile Include="Assets\Raycasting\Scripts\userInterface.cs" />
-     <Compile Include="Assets\Raycasting\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
      <Compile Include="Assets\Scripts\CharacterControls.cs" />
      <Compile Include="Assets\Scripts\GUICrosshair.cs" />
+     <Compile Include="Assets\Scripts\MouseLook.cs" />
      <None Include="Assets\Models\Badeværelse\archibase.net.txt" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\MovementAnimsetProLite\readme.txt" />
@@ -66,10 +66,6 @@
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>C:/Users/Theis/Documents/GitHub/P3Game/DetectiveGame/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
-      <Project>{FB45972D-2E7B-C702-C0A7-71484521C102}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

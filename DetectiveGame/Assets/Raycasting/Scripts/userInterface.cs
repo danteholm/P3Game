@@ -122,8 +122,11 @@ public class userInterface : MonoBehaviour {
 
 		// Checks if player is reading the note
 		if (GameObject.Find ("Player").GetComponent<items>().hasNote == true) {
-			GUI.DrawTexture (new Rect (Screen.width/3, 25, 602, 828), uiPaperNote);
+			GUI.DrawTexture (new Rect (Screen.width/3, 5, 502, 728), uiPaperNote);
 		}
+	if(Input.GetKeyDown(KeyCode.E))
+			GameObject.Find ("Player").GetComponent<items>().hasNote = false;
+	
 	}
 
 	// Timer function
