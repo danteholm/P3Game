@@ -1,0 +1,117 @@
+fileFormatVersion: 2
+guid: 918de754d3042044dbf00636caec5acc
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: casserole
+    100002: cocotte
+    100004: couteau
+    100006: fourchette
+    100008: groscouteau
+    100010: grosrouge
+    100012: litron
+    100014: pinard
+    100016: tasse
+    100018: theiere
+    100020: //RootNode
+    100022: whisky
+    400000: casserole
+    400002: cocotte
+    400004: couteau
+    400006: fourchette
+    400008: groscouteau
+    400010: grosrouge
+    400012: litron
+    400014: pinard
+    400016: tasse
+    400018: theiere
+    400020: //RootNode
+    400022: whisky
+    2300000: casserole
+    2300002: cocotte
+    2300004: couteau
+    2300006: fourchette
+    2300008: groscouteau
+    2300010: grosrouge
+    2300012: litron
+    2300014: pinard
+    2300016: tasse
+    2300018: theiere
+    2300020: whisky
+    3300000: casserole
+    3300002: cocotte
+    3300004: couteau
+    3300006: fourchette
+    3300008: groscouteau
+    3300010: grosrouge
+    3300012: litron
+    3300014: pinard
+    3300016: tasse
+    3300018: theiere
+    3300020: whisky
+    4300000: litron
+    4300002: cocotte
+    4300004: casserole
+    4300006: pinard
+    4300008: grosrouge
+    4300010: whisky
+    4300012: fourchette
+    4300014: couteau
+    4300016: groscouteau
+    4300018: theiere
+    4300020: tasse
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .0130000003
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 1
+  userData: 
