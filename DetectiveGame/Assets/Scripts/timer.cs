@@ -7,6 +7,9 @@ public class timer : MonoBehaviour {
 	public float timeLeft;
 	public bool timerOn = false;
 
+	// Font for input field
+	public Font Digital;
+
 	// Update is called once per frame
 	void Update () {
 
@@ -31,6 +34,7 @@ public class timer : MonoBehaviour {
 			GUIStyle guiStyle = new GUIStyle();
 			guiStyle.normal.textColor = new Color (1.5f, 2f, 0f);
 			guiStyle.fontSize = 60;
+			guiStyle.font = Digital;
 
 			// Variables for calculating proper time formatting used for the UI
 			int minutes = Mathf.FloorToInt(timeLeft / 60F);

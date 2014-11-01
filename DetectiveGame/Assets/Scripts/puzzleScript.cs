@@ -12,7 +12,7 @@ public class puzzleScript : MonoBehaviour {
 	public Texture2D uiKeypad;
 
 	// Font for input field
-	public Font Langdon;
+	public Font Digital;
 
 	// Sizes for the keypad buttons
 	private float buttonWidth = 85;
@@ -86,7 +86,7 @@ public class puzzleScript : MonoBehaviour {
 		GUIStyle inputStyle = new GUIStyle();
 		inputStyle.fontSize = 60;
 		inputStyle.normal.textColor = new Color (0.1f, 0.1f, 0.1f);
-		inputStyle.font = Langdon;
+		inputStyle.font = Digital;
 
 
 		if (keypadPuzzle == true) {
@@ -98,17 +98,17 @@ public class puzzleScript : MonoBehaviour {
 
 			// Displays the first input number
 			if (inputOneSet) {
-				GUI.Label(new Rect(rowWidth-30, rowHeight-2*(buttonHeight)-10, buttonWidth, buttonHeight), inputOne.ToString(), inputStyle);
+				GUI.Label(new Rect(rowWidth-50, rowHeight-2*(buttonHeight)-15, buttonWidth, buttonHeight), inputOne.ToString(), inputStyle);
 			}
 
 			// Displays the second input number
 			if (inputTwoSet) {
-				GUI.Label(new Rect(rowWidth+65, rowHeight-2*(buttonHeight)-10, buttonWidth, buttonHeight), inputTwo.ToString(), inputStyle);
+				GUI.Label(new Rect(rowWidth, rowHeight-2*(buttonHeight)-15, buttonWidth, buttonHeight), inputTwo.ToString(), inputStyle);
 			}
 
 			// Displays the third input number
 			if (inputThreeSet) {
-				GUI.Label(new Rect(rowWidth+160, rowHeight-2*(buttonHeight)-10, buttonWidth, buttonHeight), inputThree.ToString(), inputStyle);
+				GUI.Label(new Rect(rowWidth+50, rowHeight-2*(buttonHeight)-15, buttonWidth, buttonHeight), inputThree.ToString(), inputStyle);
 			}
 
 			// ---- FIRST ROW ----
