@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 01e9a5f983666034a9b40d75b492f00f
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - uiBar: {fileID: 2800000, guid: 5e7b90e4195e7e146aa241f2a2977ea4, type: 3}
+  - uiInteract: {fileID: 2800000, guid: eee285c5f43633e44a9ac16d7536d49c, type: 3}
+  - uiLockedDoor: {fileID: 2800000, guid: 7d9e920080d420441ac7c7b6db160b04, type: 3}
+  - uiGotItem: {fileID: 2800000, guid: ea5d4336dac6b264ebbd3173ece57a5d, type: 3}
+  - uiPaperNote: {fileID: 2800000, guid: 1a753e006ead08145a3978a5f918dd1a, type: 3}
+  - uiBedroomKey: {fileID: 2800000, guid: 6e4a5837e1d9e344db309d2c6f9d967b, type: 3}
+  - uiHallKey: {fileID: 2800000, guid: 25918ff39acc7d34ab504b3bae3b16a9, type: 3}
+  - uiKitchenKey: {instanceID: 0}
+  - uiBathroomKey: {instanceID: 0}
+  - uiSecretKey: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 

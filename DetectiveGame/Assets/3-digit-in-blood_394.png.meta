@@ -1,7 +1,8 @@
 fileFormatVersion: 2
 guid: 6e830976c087edc41818c665c20b8182
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: 3-digit-in-blood_394
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
