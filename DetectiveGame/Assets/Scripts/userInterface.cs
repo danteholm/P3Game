@@ -13,11 +13,10 @@ public class userInterface : MonoBehaviour {
 	public Texture2D uiInteract;
 	public Texture2D uiLockedDoor;
 	public Texture2D uiGotItem;
-	public Texture2D uiCloseNote;
 
 	// Notes
 	public Texture2D uiPaperNote;
-
+	public Texture2D uiClueNote;
 	// Item icons
 	public Texture2D uiBedroomKey;
 	public Texture2D uiHallKey;
@@ -82,7 +81,7 @@ public class userInterface : MonoBehaviour {
 		if (mainCamera.GetComponent<Raycast>().imLookingAt == true) {
 
 			// Draws the 2D texture for the message popup
-			GUI.DrawTexture (new Rect (Screen.width/2-40, Screen.height/2f-10, 75, 75), uiInteract);
+			GUI.DrawTexture (new Rect (Screen.width/2, Screen.height/2f, 75, 75), uiInteract);
 		}
 
 		// Checks, through the Raycast script, when the player has picked up an object
@@ -90,7 +89,7 @@ public class userInterface : MonoBehaviour {
 		if (mainCamera.GetComponent<Raycast>().playerGotItem == true) {
 
 			// Draws the 2D texture for the message popup
-			GUI.DrawTexture (new Rect (Screen.width/3f-30, Screen.height/1.5f, 550, 96), uiGotItem);
+			GUI.DrawTexture (new Rect (Screen.width/2.5f-50, Screen.height/1.5f, 350, 65), uiGotItem);
 
 			// Starts the HideUI function, which runs for a few seconds, to hide the UI element
 			StartCoroutine("HideUI");
@@ -109,17 +108,29 @@ public class userInterface : MonoBehaviour {
 
 		// Checks if player is reading the note
 		if (player.GetComponent<items>().hasNote == true) {
-			GUI.DrawTexture (new Rect (Screen.width/3f, 5, 502, 728), uiPaperNote);
+			GUI.DrawTexture (new Rect (Screen.width/3, 5, 502, 728), uiPaperNote);
+		}
 
-			GUI.DrawTexture (new Rect (Screen.width/4.5f+15, Screen.height-105, 500, 100), uiCloseNote);
+		// Hide the note when pressing E
+		if (Input.GetKeyDown(KeyCode.E)){
+			player.GetComponent<items>().hasNote = false;
+		// Checks if player is reading the note
+		}
+		if (player.GetComponent<items>().hasNote == true) {
+			GUI.DrawTexture (new Rect (Screen.width/3, 5, 502, 728), uiClueNote);
+		}
+		
+		// Hide the note when pressing E
+		if (Input.GetKeyDown(KeyCode.E)){
+			player.GetComponent<items>().hasNote = false;
 		}
 	}
 
 	// Timer function to hide the UI message
 	IEnumerator HideUI () {
 
-		// Yields after 1 seconds
-		yield return new WaitForSeconds(1);
+		// Yields after 2 seconds
+		yield return new WaitForSeconds(2);
 
 		// Sets the bool back to false when the timer is up
 		mainCamera.GetComponent<Raycast>().playerGotItem = false;

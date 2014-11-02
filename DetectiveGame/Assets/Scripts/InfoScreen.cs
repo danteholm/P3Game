@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class InfoScreen : MonoBehaviour {
-
+	
 	void Update () {
 
 		Screen.lockCursor = true;

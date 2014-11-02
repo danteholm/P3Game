@@ -70,9 +70,6 @@ public class Raycast : MonoBehaviour {
 							// Toggles the bool, from the item script, to true when item is picked up
 							player.GetComponent<items>().hasBedroomKey = true;
 							player.GetComponent<items>().hasNote = true;
-
-							// Shuts off all systems
-							lockdown();
 							
 							// Toggles bool to true, which is used for sound effects
 							player.GetComponent<soundEffects>().gotKey = true;
@@ -474,31 +471,5 @@ public class Raycast : MonoBehaviour {
 			// Sets the bool to false so that the UI element is no longer drawn on the screen
 			imLookingAt = false;
 		}
-	}
-
-	// To display various GUI elements
-	void OnGUI () {
-
-		// If player is reading the note
-		if (player.GetComponent<items>().hasNote == true) {
-
-			// Draw an invisible button
-			if (GUI.Button (new Rect (Screen.width/4.5f+15, Screen.height-105, 500, 100), "", GUIStyle.none)) {
-				
-				// Turns the systems back on
-				lockdown();
-				
-				// Toggles note off again
-				player.GetComponent<items>().hasNote = false;
-			}
-		}
-	}
-
-	void lockdown () {
-		
-		// Toggles movement and inventory system on/off
-		player.GetComponent<MouseLook>().cutSceneOn = !player.GetComponent<MouseLook>().cutSceneOn;
-		mainCamera.GetComponent<MouseLook>().cutSceneOn = !mainCamera.GetComponent<MouseLook>().cutSceneOn;
-		mainCamera.GetComponent<userInterface>().inventoryOn = !mainCamera.GetComponent<userInterface>().inventoryOn;
 	}
 }
