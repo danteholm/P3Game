@@ -1,9 +1,8 @@
 fileFormatVersion: 2
-guid: b3e7e8b58e3cd63418167e694bb96600
+guid: 942c94837dd621e459e570bd603d33a2
 TextureImporter:
   fileIDToRecycleName:
-    21300000: uiInteractButton
-    21300002: uiInteractButton-orig
+    21300000: uiClosePrompt
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

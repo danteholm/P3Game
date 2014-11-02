@@ -9,5 +9,5 @@ public class items : MonoBehaviour {
 	public bool hasKitchenKey, hasLivingRoomKey, hasHallKey, hasSecretKey, hasBedroomKey;
 
 	// Misc. item variables
-	public bool hasNote, hasClue1, hasClue2;
+	public bool hasNote, hasFirstNote, hasSecondNote, hasThirdNote, hasClue1;
 }

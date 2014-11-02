@@ -1,9 +1,8 @@
 fileFormatVersion: 2
-guid: 5ea5dd7cd62fd094bacee2ae42af6a6d
+guid: 605150998edd9cb43a14981bbbeef6b9
 TextureImporter:
   fileIDToRecycleName:
-    21300000: keypad
-    21300002: keypadOLD
+    21300000: uiDisplay_GameControls
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

@@ -8,7 +8,7 @@ public class InfoScreen : MonoBehaviour {
 		Screen.lockCursor = true;
 
 		// Loads the game level when Enter, or Return has been pressed
-		if (Input.GetKey (KeyCode.Return) || Input.GetKey (KeyCode.KeypadEnter)) {
+		if (Input.anyKey) {
 
 			Application.LoadLevel (1);
 		}

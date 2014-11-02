@@ -22,6 +22,7 @@ public class CharacterControls : MonoBehaviour {
 
 		if (GameObject.FindWithTag ("Player").GetComponent<MouseLook>().cutSceneOn == true) {
 			if (grounded) {
+
 				// Calculate how fast we should be moving
 				Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 				targetVelocity = transform.TransformDirection(targetVelocity);
@@ -41,6 +42,12 @@ public class CharacterControls : MonoBehaviour {
 			rigidbody.AddForce(new Vector3 (0, -gravity * rigidbody.mass, 0));
 			
 			grounded = false;
+
+			if (Input.GetAxis ("Horizontal") > 0.1f || Input.GetAxis ("Vertical") > 0.1f) {
+				GameObject.Find("Player").animation.CrossFade ("walking_1");
+			} else if (Input.GetAxis ("Horizontal") < 0.1f || Input.GetAxis ("Vertical") < 0.1f) {
+				GameObject.Find("Player").animation.Stop ("walking_1");
+			}
 		}
 	}
 	

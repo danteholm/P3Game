@@ -6,40 +6,25 @@ public class puzzleScript : MonoBehaviour {
 	// Bool used to determine when a puzzle is active, or complete
 	public bool keypadPuzzle = false;
 	public bool puzzleComplete = false;
-
 	// Graphics for puzzles
 	public Texture2D puzzleBackground;
 	public Texture2D uiKeypad;
-
 	// Font for input field
 	public Font Digital;
-
 	// Sizes for the keypad buttons
 	private float buttonWidth = 85;
 	private float buttonHeight = 75;
-
 	// Positioning of the keypad buttons
 	private float rowWidth = Screen.width/2.25f;
 	private float rowHeight = Screen.height/2.25f;
-
+	// Variables used to handle the player input, and the correct keycode
+	private string inputOutput = null;
+	private int inputNumber;
+	private int whatInputAmI;
+	public string keyCode;
 	// Private variable for the player object
 	GameObject player;
 	GameObject mainCamera;
-
-	// Integers for the password input
-	private int inputOne;
-	private int inputTwo;
-	private int inputThree;
-
-	// Bools to determine when the numbers have been set
-	private bool inputOneSet = false;
-	private bool inputTwoSet = false;
-	private bool inputThreeSet = false;
-
-	// Integers for the correct numbers
-	private int firstNumber = 3;
-	private int secondNumber = 9;
-	private int thirdNumber = 4;
 
 	void Start () {
 
@@ -52,23 +37,24 @@ public class puzzleScript : MonoBehaviour {
 	void Submit () {
 
 		// Runs a check on the numbers input
-		if (inputOne == firstNumber && inputTwo == secondNumber && inputThree == thirdNumber) {
+		if (inputOutput == keyCode) {
 
 			// Toogle bool on to play sound effect
 			player.GetComponent<soundEffects>().successSound = true;
 			player.GetComponent<soundEffects>().bookcaseMoving = true;
-
+			
 			// Puzzle mode toggle
 			puzzleMode();
-
+			
 			// Toggles the puzzle to be complete
 			puzzleComplete = true;
 
+			// Play animation on bookshelf
 			GameObject.Find ("bookshelfOffice").animation.Play("bookcase");
-
+			
 			// Call puzzle reset
 			resetNumbers();
-			
+
 		// If the numbers are not correct
 		} else {
 
@@ -88,267 +74,160 @@ public class puzzleScript : MonoBehaviour {
 		inputStyle.normal.textColor = new Color (0.1f, 0.1f, 0.1f);
 		inputStyle.font = Digital;
 
-
+		// Only renders when the puzzle is active
 		if (keypadPuzzle == true) {
+
+			/* ------------
+				KEYPAD GUI
+			   ------------ */
 
 			//GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), puzzleBackground);
 			GUI.DrawTexture (new Rect (Screen.width/3f-15, Screen.height/6.5f, 500, 500), uiKeypad);
 
-			GUI.Button(new Rect(rowWidth-buttonWidth-5, rowHeight-buttonHeight-buttonHeight-40, 3*(buttonWidth)+10, buttonHeight), "", inputStyle);
+			/* ---------
+			    DISPLAY
+			   --------- */
 
-			// Displays the first input number
-			if (inputOneSet) {
-				GUI.Label(new Rect(rowWidth-50, rowHeight-2*(buttonHeight)-15, buttonWidth, buttonHeight), inputOne.ToString(), inputStyle);
-			}
+			GUI.Label(new Rect(rowWidth-42, rowHeight-2*(buttonHeight)-15, buttonWidth, buttonHeight), inputOutput, inputStyle);
 
-			// Displays the second input number
-			if (inputTwoSet) {
-				GUI.Label(new Rect(rowWidth, rowHeight-2*(buttonHeight)-15, buttonWidth, buttonHeight), inputTwo.ToString(), inputStyle);
-			}
-
-			// Displays the third input number
-			if (inputThreeSet) {
-				GUI.Label(new Rect(rowWidth+50, rowHeight-2*(buttonHeight)-15, buttonWidth, buttonHeight), inputThree.ToString(), inputStyle);
-			}
-
-			// ---- FIRST ROW ----
+			/* -----------
+			    FIRST ROW
+			   ----------- */
 
 			// '1' button
 			if (GUI.Button(new Rect(rowWidth-buttonWidth+25, rowHeight-buttonHeight-15, buttonWidth, buttonHeight), "", GUIStyle.none)) {
 
 				// Play sound effect when clicking button
-				player.GetComponent<soundEffects>().keypadSound = true;
+				buttonSound();
 
-				// Checks what # of input it is
-				if (inputOneSet == false) {
-					
-					inputOne = 1;
-					inputOneSet = true;
-					
-				} else if (inputOneSet == true && inputTwoSet == false) {
+				// Changes the int to match the button pressed
+				whatInputAmI = 1;
 
-					inputTwo = 1;
-					inputTwoSet = true;
-					
-				} else if (inputTwoSet == true && inputThreeSet == false) {
-
-					inputThree = 1;
-					inputThreeSet = true;
-					
-				}
+				// Runs the script to insert the value into the input variable
+				buttonPress();
 			}
 
 			// '2' button
 			if (GUI.Button(new Rect(rowWidth+35, rowHeight-buttonHeight-15, buttonWidth, buttonHeight), "", GUIStyle.none)) {
 				
 				// Play sound effect when clicking button
-				player.GetComponent<soundEffects>().keypadSound = true;
+				buttonSound();
 
-				// Checks what # of input it is
-				if (inputOneSet == false) {
-					
-					inputOne = 2;
-					inputOneSet = true;
-					
-				} else if (inputOneSet == true && inputTwoSet == false) {
-					
-					inputTwo = 2;
-					inputTwoSet = true;
-					
-				} else if (inputTwoSet == true && inputThreeSet == false) {
-					
-					inputThree = 2;
-					inputThreeSet = true;
-					
-				}
+				// Changes the int to match the button pressed
+				whatInputAmI = 2;
+
+				// Runs the script to insert the value into the input variable
+				buttonPress();
 			}
 
 			// '3' button
 			if (GUI.Button(new Rect(rowWidth+buttonWidth+45, rowHeight-buttonHeight-15, buttonWidth, buttonHeight), "", GUIStyle.none)) {
 				
 				// Play sound effect when clicking button
-				player.GetComponent<soundEffects>().keypadSound = true;
+				buttonSound();
 
-				// Checks what # of input it is
-				if (inputOneSet == false) {
-					
-					inputOne = 3;
-					inputOneSet = true;
-					
-				} else if (inputOneSet == true && inputTwoSet == false) {
-					
-					inputTwo = 3;
-					inputTwoSet = true;
-					
-				} else if (inputTwoSet == true && inputThreeSet == false) {
-					
-					inputThree = 3;
-					inputThreeSet = true;
-					
-				} 
+				// Changes the int to match the button pressed
+				whatInputAmI = 3;
+
+				// Runs the script to insert the value into the input variable
+				buttonPress();
 			}
 
-			// ---- SECOND ROW ----
+			/* ------------
+			    SECOND ROW
+			   ------------ */
 
 			// '4' button
 			if (GUI.Button(new Rect(rowWidth-buttonWidth+25, rowHeight-5, buttonWidth, buttonHeight), "", GUIStyle.none)) {
 				
 				// Play sound effect when clicking button
-				player.GetComponent<soundEffects>().keypadSound = true;
+				buttonSound();
 
-				// Checks what # of input it is
-				if (inputOneSet == false) {
-					
-					inputOne = 4;
-					inputOneSet = true;
-					
-				} else if (inputOneSet == true && inputTwoSet == false) {
-					
-					inputTwo = 4;
-					inputTwoSet = true;
-					
-				} else if (inputTwoSet == true && inputThreeSet == false) {
-					
-					inputThree = 4;
-					inputThreeSet = true;
-	
-				}
+				// Changes the int to match the button pressed
+				whatInputAmI = 4;
+
+				// Runs the script to insert the value into the input variable
+				buttonPress();
 			}
 
 			// '5' button
 			if (GUI.Button(new Rect(rowWidth+35, rowHeight-5, buttonWidth, buttonHeight), "", GUIStyle.none)) {
 				
 				// Play sound effect when clicking button
-				player.GetComponent<soundEffects>().keypadSound = true;
-				
-				// Checks what # of input it is
-				if (inputOneSet == false) {
-					
-					inputOne = 5;
-					inputOneSet = true;
-					
-				} else if (inputOneSet == true && inputTwoSet == false) {
-					
-					inputTwo = 5;
-					inputTwoSet = true;
-					
-				} else if (inputTwoSet == true && inputThreeSet == false) {
-					
-					inputThree = 5;
-					inputThreeSet = true;
-					
-				}
+				buttonSound();
+
+				// Changes the int to match the button pressed
+				whatInputAmI = 5;
+
+				// Runs the script to insert the value into the input variable
+				buttonPress();
 			}
 
 			// '6' button
 			if (GUI.Button(new Rect(rowWidth+buttonWidth+45, rowHeight-5, buttonWidth, buttonHeight), "", GUIStyle.none)) {
 				
 				// Play sound effect when clicking button
-				player.GetComponent<soundEffects>().keypadSound = true;
+				buttonSound();
 
-				// Checks what # of input it is
-				if (inputOneSet == false) {
-					
-					inputOne = 6;
-					inputOneSet = true;
-					
-				} else if (inputOneSet == true && inputTwoSet == false) {
-					
-					inputTwo = 6;
-					inputTwoSet = true;
-					
-				} else if (inputTwoSet == true && inputThreeSet == false) {
-					
-					inputThree = 6;
-					inputThreeSet = true;
-					
-				}
+				// Changes the int to match the button pressed
+				whatInputAmI = 6;
+
+				// Runs the script to insert the value into the input variable
+				buttonPress();
 			}
 
-			// ---- THIRD ROW ----
+			/* -----------
+			    THIRD ROW
+			   ----------- */
 
 			// '7' button
 			if (GUI.Button(new Rect(rowWidth-buttonWidth+25, rowHeight+buttonHeight+5, buttonWidth, buttonHeight), "", GUIStyle.none)) {
 				
 				// Play sound effect when clicking button
-				player.GetComponent<soundEffects>().keypadSound = true;
+				buttonSound();
 
-				// Checks what # of input it is
-				if (inputOneSet == false) {
-					
-					inputOne = 7;
-					inputOneSet = true;
-					
-				} else if (inputOneSet == true && inputTwoSet == false) {
-					
-					inputTwo = 7;
-					inputTwoSet = true;
-					
-				} else if (inputTwoSet == true && inputThreeSet == false) {
-					
-					inputThree = 7;
-					inputThreeSet = true;
-					
-				}
+				// Changes the int to match the button pressed
+				whatInputAmI = 7;
+
+				// Runs the script to insert the value into the input variable
+				buttonPress();
 			}
 
 			// '8' button
 			if (GUI.Button(new Rect(rowWidth+35, rowHeight+buttonHeight+5, buttonWidth, buttonHeight), "", GUIStyle.none)) {
 				
 				// Play sound effect when clicking button
-				player.GetComponent<soundEffects>().keypadSound = true;
+				buttonSound();
 
-				// Checks what # of input it is
-				if (inputOneSet == false) {
-					
-					inputOne = 8;
-					inputOneSet = true;
-					
-				} else if (inputOneSet == true && inputTwoSet == false) {
-					
-					inputTwo = 8;
-					inputTwoSet = true;
-					
-				} else if (inputTwoSet == true && inputThreeSet == false) {
-					
-					inputThree = 8;
-					inputThreeSet = true;
-					
-				}
+				// Changes the int to match the button pressed
+				whatInputAmI = 8;
+
+				// Runs the script to insert the value into the input variable
+				buttonPress();
 			}
 
 			// '9' button
 			if (GUI.Button(new Rect(rowWidth+buttonWidth+45, rowHeight+buttonHeight+5, buttonWidth, buttonHeight), "", GUIStyle.none)) {
 				
 				// Play sound effect when clicking button
-				player.GetComponent<soundEffects>().keypadSound = true;
+				buttonSound();
 
-				// Checks what # of input it is
-				if (inputOneSet == false) {
-					
-					inputOne = 9;
-					inputOneSet = true;
-					
-				} else if (inputOneSet == true && inputTwoSet == false) {
-					
-					inputTwo = 9;
-					inputTwoSet = true;
-					
-				} else if (inputTwoSet == true && inputThreeSet == false) {
-					
-					inputThree = 9;
-					inputThreeSet = true;
-					
-				}
+				// Changes the int to match the button pressed
+				whatInputAmI = 9;
+
+				// Runs the script to insert the value into the input variable
+				buttonPress();
 			}
 
-			// ---- FOURTH ROW ----
+			/* ------------
+			    FOURTH ROW
+			   ------------ */
 
 			// 'X' button to end the puzzle
 			if (GUI.Button(new Rect(rowWidth-buttonWidth+25, rowHeight+2*(buttonHeight)+15, buttonWidth, buttonHeight), "", GUIStyle.none)) {
 				
 				// Play sound effect when clicking button
-				player.GetComponent<soundEffects>().keypadSound = true;
+				buttonSound();
 				
 				// Puzzle mode toggle
 				puzzleMode();
@@ -359,69 +238,86 @@ public class puzzleScript : MonoBehaviour {
 
 			// '0' button
 			if (GUI.Button(new Rect(rowWidth+35, rowHeight+2*(buttonHeight)+15, buttonWidth, buttonHeight), "", GUIStyle.none)) {
-				
-				// Play sound effect when clicking button
-				player.GetComponent<soundEffects>().keypadSound = true;
 
-				// Checks what # of input it is
-				if (inputOneSet == false) {
-					
-					inputOne = 0;
-					inputOneSet = true;
-					
-				} else if (inputOneSet == true && inputTwoSet == false) {
-					
-					inputTwo = 0;
-					inputTwoSet = true;
-					
-				} else if (inputTwoSet == true && inputThreeSet == false) {
-					
-					inputThree = 0;
-					inputThreeSet = true;
-					
-				}
+				// Play sound effect when clicking button
+				buttonSound();
+
+				// Changes the int to match the button pressed
+				whatInputAmI = 0;
+
+				// Runs the script to insert the value into the input variable
+				buttonPress();
 			}
 
 			// 'OK' button, to submit the input code
 			if (GUI.Button(new Rect(rowWidth+buttonWidth+45, rowHeight+2*(buttonHeight)+15, buttonWidth, buttonHeight), "", GUIStyle.none)) {
-				
-				// Play sound effect when clicking button
-				player.GetComponent<soundEffects>().keypadSound = true;
+
+				buttonSound();
 
 				Submit();
 			}
 
-			// ---- END ----
+			/* -----
+			    END
+			   ----- */
 		}
 	}
 
-	// Toggles mode on/off
+	// Toggle mode on/off function
 	void puzzleMode () {
 
 		// Toggles movement system back on
 		player.GetComponent<MouseLook>().cutSceneOn = !player.GetComponent<MouseLook>().cutSceneOn;
 		mainCamera.GetComponent<MouseLook>().cutSceneOn = !mainCamera.GetComponent<MouseLook>().cutSceneOn;
 
-		// Deactivates puzzle
+		// Toggles puzzle, and inventory
 		mainCamera.GetComponent<puzzleScript>().keypadPuzzle = !mainCamera.GetComponent<puzzleScript>().keypadPuzzle;
 		mainCamera.GetComponent<userInterface>().inventoryOn = !mainCamera.GetComponent<userInterface>().inventoryOn;
 	}
 
 	// Reset the puzzle
 	void resetNumbers () {
-		inputOne = 0;
-		inputTwo = 0;
-		inputThree = 0;
 
-		inputOneSet = false;
-		inputTwoSet = false;
-		inputThreeSet = false;
+		inputOutput = null;
+		whatInputAmI = 0;
+		inputNumber = 0;
 	}
 
-	// Timer function to hide the UI message
-	IEnumerator bookcaseSound () {
+	// Play sound effect when clicking button
+	void buttonSound () {
+
+		player.GetComponent<soundEffects>().keypadSound = true;
+	}
+
+	// Button press script
+	void buttonPress () {
+
+		// Checks what # of input it is. The cap is at 7
+		if (inputNumber < 7) {
+
+			// Increase the value. This is used to cap the max amount of digits the code can be
+			inputNumber++;
+
+			// Inserts the value of the button pressed to the string
+			inputOutput += whatInputAmI;
 		
-		// Yields after 0.5 seconds
+		// If the player inputs another number when the capacity has reached 7
+		} else {
+
+			// Resets the value of the output string
+			inputOutput = null;
+
+			// Resets the output when it exceeds the 7 digit capacity
+			inputNumber = 1;
+
+			// Inserts the value of the button pressed to the string
+			inputOutput += whatInputAmI;
+		}
+	}
+
+	// Plays the sound effect for the bookcase moving after a short delay
+	IEnumerator bookcaseSound () {
+
 		yield return new WaitForSeconds(1);
 		
 		// Toggle bool for sound effect

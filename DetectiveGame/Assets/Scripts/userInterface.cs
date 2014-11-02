@@ -13,10 +13,15 @@ public class userInterface : MonoBehaviour {
 	public Texture2D uiInteract;
 	public Texture2D uiLockedDoor;
 	public Texture2D uiGotItem;
+	public Texture2D uiPromptClose;
 
 	// Notes
 	public Texture2D uiPaperNote;
-	public Texture2D uiClueNote;
+	public Texture2D uiNote1;
+	/*public Texture2D uiNote2;
+	public Texture2D uiNote3;
+	public Texture2D uiNote4;*/
+
 	// Item icons
 	public Texture2D uiBedroomKey;
 	public Texture2D uiHallKey;
@@ -42,11 +47,16 @@ public class userInterface : MonoBehaviour {
 
 	void OnGUI () {
 
-		// Item bar at the bottom of the screen
+		/* ----------
+			ITEM BAR
+		   ---------- */
+
 		if (inventoryOn == true) {
 			GUI.DrawTexture (new Rect (0, Screen.width/2-15, Screen.width, 100), uiBar);
 
-			// <---- ITEMS ---->
+			/* ------------
+				ITEM ICONS
+			   ------------ */
 
 			// Checks if player has the item
 			if (player.GetComponent<items>().hasBedroomKey == true) {
@@ -73,57 +83,70 @@ public class userInterface : MonoBehaviour {
 				GUI.DrawTexture (new Rect (Screen.width/3.25f, Screen.height/1.13f, 60, 73), uiSecretKey);
 			}
 
-			// <---- END ---->
+			/* -----------
+				END ICONS
+			   ----------- */
 		}
+
+		/* ---------
+			END BAR
+	       --------- */
 
 		// Checks, through the Raycast script, when the player is close to an object and is also looking at it
 		// The message does not show up when the inventory is open
 		if (mainCamera.GetComponent<Raycast>().imLookingAt == true) {
 
 			// Draws the 2D texture for the message popup
-			GUI.DrawTexture (new Rect (Screen.width/2, Screen.height/2f, 75, 75), uiInteract);
+			GUI.DrawTexture (new Rect (Screen.width/2, Screen.height/2f, 50, 50), uiInteract);
 		}
 
 		// Checks, through the Raycast script, when the player has picked up an object
 		// The message does not show up when the inventory is open
-		if (mainCamera.GetComponent<Raycast>().playerGotItem == true) {
+		/*if (mainCamera.GetComponent<Raycast>().playerGotItem == true) {
 
 			// Draws the 2D texture for the message popup
-			GUI.DrawTexture (new Rect (Screen.width/2.5f-50, Screen.height/1.5f, 350, 65), uiGotItem);
+			GUI.DrawTexture (new Rect (Screen.width/2.5f-50, Screen.height/1.5f, 275, 48), uiGotItem);
 
 			// Starts the HideUI function, which runs for a few seconds, to hide the UI element
 			StartCoroutine("HideUI");
-		}
+		}*/
 
 		// Checks, through the Raycast script, when the player is trying to open a locked door
 		// The message does not show up when the inventory is open
 		if (mainCamera.GetComponent<Raycast>().doorIsLocked == true) {
 			
 			// Draws the 2D texture for the message popup
-			GUI.DrawTexture (new Rect (Screen.width/2.5f, Screen.height/2f, 60, 92), uiLockedDoor);
+			GUI.DrawTexture (new Rect (Screen.width/2.5f, Screen.height/2f, 65, 87), uiLockedDoor);
 			
 			// Starts the HideUI function, which runs for a few seconds, to hide the UI element
 			StartCoroutine("DoorLocked");
 		}
 
-		// Checks if player is reading the note
-		if (player.GetComponent<items>().hasNote == true) {
-			GUI.DrawTexture (new Rect (Screen.width/3, 5, 502, 728), uiPaperNote);
+		/* -------------
+			NOTE PROMPT
+		   ------------- */
+
+		if (player.GetComponent<items>().hasNote == true || player.GetComponent<items>().hasFirstNote == true) {
+			GUI.DrawTexture (new Rect (Screen.width/1.4f, Screen.height-100, 160, 50), uiPromptClose);
 		}
 
-		// Hide the note when pressing E
-		if (Input.GetKeyDown(KeyCode.E)){
-			player.GetComponent<items>().hasNote = false;
-		// Checks if player is reading the note
-		}
+		/* -------
+		    NOTES
+		   ------- */
+
+		// Checks if player is reading the note on the first door
 		if (player.GetComponent<items>().hasNote == true) {
-			GUI.DrawTexture (new Rect (Screen.width/3, 5, 502, 728), uiClueNote);
+			GUI.DrawTexture (new Rect (Screen.width/3f, 5, 502, 728), uiPaperNote);
 		}
-		
-		// Hide the note when pressing E
-		if (Input.GetKeyDown(KeyCode.E)){
-			player.GetComponent<items>().hasNote = false;
+
+		// Checks if player is reading the note attached to the hall key
+		if (player.GetComponent<items>().hasFirstNote == true) {
+			GUI.DrawTexture (new Rect (Screen.width/3f, 5, 502, 728), uiNote1);
 		}
+
+		/* -----------
+			END NOTES
+		   ----------- */
 	}
 
 	// Timer function to hide the UI message
