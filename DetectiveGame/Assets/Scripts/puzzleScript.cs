@@ -7,7 +7,7 @@ public class puzzleScript : MonoBehaviour {
 	public bool keypadPuzzle = false;
 	public bool puzzleComplete = false;
 	// Graphics for puzzles
-	public Texture2D puzzleBackground;
+	//public Texture2D puzzleBackground;
 	public Texture2D uiKeypad;
 	// Font for input field
 	public Font Digital;
@@ -229,6 +229,14 @@ public class puzzleScript : MonoBehaviour {
 				// Play sound effect when clicking button
 				buttonSound();
 				
+				// Puzzle mode toggle
+				puzzleMode();
+				
+				// Call puzzle reset
+				resetNumbers();
+			
+			// If player presses the Escape key instead
+			} else if (Input.GetKeyDown(KeyCode.Escape)) {
 				// Puzzle mode toggle
 				puzzleMode();
 				

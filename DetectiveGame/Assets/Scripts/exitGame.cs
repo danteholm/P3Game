@@ -11,10 +11,10 @@ public class exitGame : MonoBehaviour {
 
 	void Update () {
 
-	//	if (Input.GetKey (KeyCode.Escape)) {
+		/*if (Input.GetKey (KeyCode.Escape)) {
 			
-	//		// Quits game
-	//		Application.Quit();
-	//	}
+			// Quits game
+			Application.Quit();
+		}*/
 	}
 }

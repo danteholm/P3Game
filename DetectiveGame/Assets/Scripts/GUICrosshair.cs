@@ -4,18 +4,12 @@ using System.Collections;
 public class GUICrosshair : MonoBehaviour {
 	public Texture2D crosshairImage;
 
-	// Use this for initialization
-	void Start () {
+	// Renders the crosshair on the screen
+	// It only shows up when cutscenes aren't being played
+	// It doesn't show up if the interact button is currently on the screen
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
+	void OnGUI() {
 
-	}
-
-	void OnGUI()
-	{
 		if (GameObject.FindWithTag ("Player").GetComponent<MouseLook>().cutSceneOn == true) {
 
 			if (GameObject.Find ("Main Camera").GetComponent<Raycast>().imLookingAt == false) {

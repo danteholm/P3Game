@@ -5,8 +5,14 @@ MonoImporter:
   defaultReferences:
   - doorOpen: {fileID: 8300000, guid: b1a83a2644d9c6344ab9498a7c5c1ba3, type: 3}
   - doorClose: {fileID: 8300000, guid: 07c9062e12d618641bb8a10b62fd011a, type: 3}
+  - lockedDoor: {fileID: 8300000, guid: 9f280e5454820d9419b836ecf6f0fb9b, type: 3}
   - paper: {fileID: 8300000, guid: 928dac2c1b3d79d43af0ee16bfd1c59a, type: 3}
-  - key: {instanceID: 0}
+  - key: {fileID: 8300000, guid: 41d24364dde1cd84abafec48d752b668, type: 3}
+  - tik: {fileID: 8300000, guid: 4d08bb58168825443b59d4614a815920, type: 3}
+  - buttonPad: {fileID: 8300000, guid: 1fe0cfebbd672f643bba43c8387cea20, type: 3}
+  - error: {fileID: 8300000, guid: fcb2bfc7cab5165458cb98adae1dcfe7, type: 3}
+  - success: {fileID: 8300000, guid: dfb9f2bd6a4fbc94fa1ea7a6199be6cb, type: 3}
+  - bookcase: {fileID: 8300000, guid: 002f357960ddfcd4faf3af4526303d0d, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -87,7 +87,7 @@ public class soundEffects : MonoBehaviour {
 		if (activeTik == true) {
 			
 			// Plays the specified sound effect
-			audio.PlayOneShot(tik);
+			GameObject.Find ("Old-timer bomb prefab").audio.PlayOneShot(tik);
 
 			// Make sure the sound effect keeps looping
 			audio.loop = true;	

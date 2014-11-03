@@ -3,37 +3,23 @@ using System.Collections;
 
 public class userInterface : MonoBehaviour {
 
-	// Bool used to determine when to draw the texture on the screen
-	//private bool DrawGUI = false;
-	//public bool inventoryOpen;
+	// Bool used to determine when to display the inventory bar
 	public bool inventoryOn;
-
 	// Variables used to store the images for the UI
 	public Texture2D uiBar;
 	public Texture2D uiInteract;
 	public Texture2D uiLockedDoor;
 	public Texture2D uiGotItem;
 	public Texture2D uiPromptClose;
-
-	// Notes
-	public Texture2D uiPaperNote;
-	public Texture2D uiNote1;
-	/*public Texture2D uiNote2;
-	public Texture2D uiNote3;
-	public Texture2D uiNote4;*/
-
 	// Item icons
-	public Texture2D uiBedroomKey;
-	public Texture2D uiHallKey;
-	public Texture2D uiKitchenKey;
-	public Texture2D uiBathroomKey;
-	public Texture2D uiSecretKey;
-
-	// Item triggers
-	public bool showKey;
-	public bool showFirstClue;
-
-	// Private variable for the camera
+	public Texture2D uiBedroomKey, uiHallKey, uiKitchenKey, uiBathroomKey, uiSecretKey;
+	// Notes
+	public Texture2D uiPaperNote, uiNote1;
+	// Newspapers
+	public Texture2D uiNewspaper1, uiNewspaper2, uiNewspaper3;
+	// Hints
+	public Texture2D uiHint1, uiHint2, uiHint3;
+	// Private variable for the player and camera object
 	GameObject mainCamera;
 	GameObject player;
 
@@ -122,17 +108,17 @@ public class userInterface : MonoBehaviour {
 			StartCoroutine("DoorLocked");
 		}
 
-		/* -------------
-			NOTE PROMPT
-		   ------------- */
+		/* ---------------
+			BUTTON PROMPT
+		   --------------- */
 
-		if (player.GetComponent<items>().hasNote == true || player.GetComponent<items>().hasFirstNote == true) {
+		if (mainCamera.GetComponent<Raycast>().uiPrompt == true) {
 			GUI.DrawTexture (new Rect (Screen.width/1.4f, Screen.height-100, 160, 50), uiPromptClose);
 		}
 
-		/* -------
-		    NOTES
-		   ------- */
+		/* ------------------
+			READABLE OBJECTS
+		   ------------------ */
 
 		// Checks if player is reading the note on the first door
 		if (player.GetComponent<items>().hasNote == true) {
@@ -144,9 +130,39 @@ public class userInterface : MonoBehaviour {
 			GUI.DrawTexture (new Rect (Screen.width/3f, 5, 502, 728), uiNote1);
 		}
 
-		/* -----------
-			END NOTES
-		   ----------- */
+		// Checks if player is reading the first newspaper
+		if (player.GetComponent<items>().readFirstNewspaper == true) {
+			GUI.DrawTexture (new Rect (Screen.width/4f, 5, 774, 600), uiNewspaper1);
+		}
+
+		// Checks if player is reading the second newspaper
+		if (player.GetComponent<items>().readSecondNewspaper == true) {
+			GUI.DrawTexture (new Rect (Screen.width/4f, 5, 770, 597), uiNewspaper2);
+		}
+
+		// Checks if player is reading the third newspaper
+		if (player.GetComponent<items>().readThirdNewspaper == true) {
+			GUI.DrawTexture (new Rect (Screen.width/4f, 5, 766, 594), uiNewspaper3);
+		}
+
+		// Checks if player is reading the first hint
+		if (player.GetComponent<items>().readHint1 == true) {
+			GUI.DrawTexture (new Rect (Screen.width/3f, Screen.height/2.5f, 512, 128), uiHint1);
+		}
+
+		// Checks if player is reading the second hint
+		if (player.GetComponent<items>().readHint2 == true) {
+			GUI.DrawTexture (new Rect (Screen.width/3f, Screen.height/2.5f, 512, 128), uiHint2);
+		}
+
+		// Checks if player is reading the third hint
+		if (player.GetComponent<items>().readHint3 == true) {
+			GUI.DrawTexture (new Rect (Screen.width/3f, Screen.height/2.5f, 512, 128), uiHint3);
+		}
+
+		/* --------------
+			END READABLE
+		   -------------- */
 	}
 
 	// Timer function to hide the UI message

@@ -1,8 +1,9 @@
 fileFormatVersion: 2
-guid: 942c94837dd621e459e570bd603d33a2
+guid: 17646cb0f5a781f4f8bf97f16aad3476
 TextureImporter:
   fileIDToRecycleName:
-    21300000: uiClosePrompt
+    21300000: uiClosePrompt 1
+    21300002: uiClosePrompt
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

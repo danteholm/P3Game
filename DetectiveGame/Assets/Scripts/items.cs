@@ -7,7 +7,10 @@ public class items : MonoBehaviour {
 
 	// Key variables
 	public bool hasKitchenKey, hasLivingRoomKey, hasHallKey, hasSecretKey, hasBedroomKey;
-
 	// Misc. item variables
 	public bool hasNote, hasFirstNote, hasSecondNote, hasThirdNote, hasClue1;
+	// Newspapers
+	public bool readFirstNewspaper, readSecondNewspaper, readThirdNewspaper;
+	// Hints
+	public bool readHint1, readHint2, readHint3;
 }
