@@ -487,7 +487,7 @@ public class Raycast : MonoBehaviour {
 		if (player.GetComponent<items>().hasNote == true) {
 			
 			// Draw an invisible button
-			if (Input.GetKeyDown(KeyCode.E)) {
+			if (Input.GetKeyDown(KeyCode.F)) {
 
 				// Toggles bool to true, which is used for sound effects
 				player.GetComponent<soundEffects>().gotPaper = true;
@@ -504,7 +504,7 @@ public class Raycast : MonoBehaviour {
 		if (player.GetComponent<items>().hasFirstNote == true) {
 			
 			// Draw an invisible button
-			if (Input.GetKeyDown(KeyCode.E)) {
+			if (Input.GetKeyDown(KeyCode.F)) {
 				
 				// Toggles bool to true, which is used for sound effects
 				player.GetComponent<soundEffects>().gotPaper = true;
