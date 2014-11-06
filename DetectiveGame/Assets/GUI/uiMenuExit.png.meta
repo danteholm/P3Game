@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: eaf2c9f9706675b4d857f8976be39448
+guid: 2080d686850cf4d4fbb20cbb768132fe
 TextureImporter:
   fileIDToRecycleName:
-    21300000: uiMainMenuBG
+    21300000: uiMenuExit
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

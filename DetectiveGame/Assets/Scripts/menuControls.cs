@@ -2,15 +2,15 @@
 using System.Collections;
 
 public class menuControls : MonoBehaviour {
-
-	// Hover over the object
-	void OnMouseEnter () {
-		GameObject.Find ("cUnderline").renderer.enabled = true;
-	}
-
-	// Click the object
-	void OnMouseDown () {
-		Application.LoadLevel ("controls");
+	
+	// Bool to determine when to render the hover effect
+	public GUIStyle menuButton;
+	
+	// Draw button
+	void OnGUI () {
+		if (GUI.Button(new Rect(Screen.width/2f-100, Screen.height/4f-25, 375, 75), "", menuButton)) {
+			Application.LoadLevel ("controls");
+		}
 	}
 
 	// Check for a key press as well
@@ -18,10 +18,5 @@ public class menuControls : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.C)) {
 			Application.LoadLevel ("controls");
 		}
-	}
-
-	// No longer hovering the object
-	void OnMouseExit () {
-		GameObject.Find ("cUnderline").renderer.enabled = false;
 	}
 }

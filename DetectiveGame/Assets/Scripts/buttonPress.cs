@@ -12,7 +12,7 @@ public class buttonPress : MonoBehaviour {
 		
 		// Make the first button. If it is pressed, Application.Loadlevel (0) will be executed
 		if(GUI.Button(new Rect(Screen.width/2-90,Screen.height/1.3f,180,70), "End Game")) {
-			Application.LoadLevel("controls");
+			Application.LoadLevel("main");
 		}
 	}
 }
