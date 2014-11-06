@@ -13,7 +13,7 @@ public class GUICrosshair : MonoBehaviour {
 		if (GameObject.FindWithTag ("Player").GetComponent<MouseLook>().cutSceneOn == true) {
 
 			if (GameObject.Find ("Main Camera").GetComponent<Raycast>().imLookingAt == false) {
-				GUI.Label (new Rect (Screen.width/2, Screen.height/2, 50, 50), crosshairImage);
+				GUI.Label (new Rect (Screen.width/2, Screen.height/2, 64, 64), crosshairImage);
 			}
 		}
 	}

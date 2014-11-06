@@ -58,6 +58,9 @@
      <Compile Include="Assets\Scripts\buttonPress.cs" />
      <Compile Include="Assets\Scripts\exitGame.cs" />
      <Compile Include="Assets\Scripts\items.cs" />
+     <Compile Include="Assets\Scripts\menuControls.cs" />
+     <Compile Include="Assets\Scripts\menuNewGame.cs" />
+     <Compile Include="Assets\Scripts\menuQuit.cs" />
      <Compile Include="Assets\Scripts\objectManager.cs" />
      <Compile Include="Assets\Scripts\puzzleScript.cs" />
      <Compile Include="Assets\Scripts\soundEffects.cs" />

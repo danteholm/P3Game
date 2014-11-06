@@ -10,7 +10,9 @@ public class InfoScreen : MonoBehaviour {
 		// Loads the game level when Enter, or Return has been pressed
 		if (Input.anyKey) {
 
-			Application.LoadLevel (1);
+			Screen.lockCursor = false;
+
+			Application.LoadLevel ("main");
 		}
 	}
 }

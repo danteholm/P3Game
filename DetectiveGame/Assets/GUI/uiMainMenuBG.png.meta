@@ -1,8 +1,9 @@
 fileFormatVersion: 2
-guid: 10f891b9b0c910d4f9f5a8b16de6a8f7
+guid: 3d2eb0df721d3fc488c5499a512a1caa
 TextureImporter:
   fileIDToRecycleName:
-    21300000: uiDisplay_GameControls
+    21300000: uiMainMenuBG 1
+    21300002: uiMainMenuBG
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

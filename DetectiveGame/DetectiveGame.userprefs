@@ -1,8 +1,15 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\..\Mark\Documents\GitHub\P3Game\DetectiveGame\Assets\Scripts\Raycast.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\InfoScreen.cs">
     <Files>
-      <File FileName="..\..\..\..\Mark\Documents\GitHub\P3Game\DetectiveGame\Assets\Scripts\Raycast.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\menuControls.cs" Line="27" Column="2" />
+      <File FileName="Assets\Scripts\menuQuit.cs" Line="27" Column="2" />
+      <File FileName="Assets\Scripts\puzzleScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\timer.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\userInterface.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Raycast.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\menuNewGame.cs" Line="27" Column="2" />
+      <File FileName="Assets\Scripts\InfoScreen.cs" Line="14" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

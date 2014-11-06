@@ -105,6 +105,7 @@ public class puzzleScript : MonoBehaviour {
 
 				// Runs the script to insert the value into the input variable
 				buttonPress();
+
 			}
 
 			// '2' button
@@ -236,7 +237,7 @@ public class puzzleScript : MonoBehaviour {
 				resetNumbers();
 			
 			// If player presses the Escape key instead
-			} else if (Input.GetKeyDown(KeyCode.Escape)) {
+			} else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown (KeyCode.Mouse1)) {
 				// Puzzle mode toggle
 				puzzleMode();
 				
@@ -304,7 +305,7 @@ public class puzzleScript : MonoBehaviour {
 		if (inputNumber < 7) {
 
 			// Increase the value. This is used to cap the max amount of digits the code can be
-			inputNumber++;
+			inputNumber ++;
 
 			// Inserts the value of the button pressed to the string
 			inputOutput += whatInputAmI;
