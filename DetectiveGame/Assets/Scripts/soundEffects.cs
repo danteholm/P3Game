@@ -14,24 +14,36 @@ public class soundEffects : MonoBehaviour {
 	public AudioClip error;
 	public AudioClip success;
 	public AudioClip bookcase;
-
+	public AudioClip explode;
+	public AudioClip stoveClose;
+	public AudioClip stoveOpen;
+	public AudioClip cupboardClose;
+	public AudioClip cupboardOpen;
+	public AudioClip chestClose;
+	public AudioClip chestOpen;
 	// Bools used to determine when to play sound effects
 	public bool openDoor;
 	public bool closeDoor;
 	public bool doorIsLocked;
-
+	public bool closeStove;
+	public bool openStove;
+	public bool closeCupboard;
+	public bool openCupboard;
+	public bool closeChest;
+	public bool openChest;
 	// Item related sounds
 	public bool gotKey;
 	public bool gotPaper;
-
 	// Bomb sound
 	public bool activeTik;
-
 	// Keypad Puzzle sounds
 	public bool keypadSound;
 	public bool errorSound;
 	public bool successSound;
 	public bool bookcaseMoving;
+	// Timer Puzzle sounds
+	public bool explosionSound;
+	public bool wireCut;
 
 	void Update () {
 
@@ -87,14 +99,10 @@ public class soundEffects : MonoBehaviour {
 		if (activeTik == true) {
 			
 			// Plays the specified sound effect
-			GameObject.Find ("Old-timer bomb prefab").audio.PlayOneShot(tik);
-
-			// Make sure the sound effect keeps looping
-			audio.loop = true;	
+			GameObject.Find ("Old-timer bomb prefab").audio.Play ();
 
 			// Resets the bool back to false
 			activeTik = false;
-		
 		}
 		
 		// Checks for bool status, if true, in order to play sound effect
@@ -135,6 +143,76 @@ public class soundEffects : MonoBehaviour {
 			
 			// Resets the bool back to false
 			bookcaseMoving = false;
+		}
+
+		// Checks for bool status, if true, in order to play sound effect
+		if (explosionSound == true) {
+			
+			// Plays the specified sound effect
+			audio.PlayOneShot (explode);
+			
+			// Resets the bool back to false
+			explosionSound = false;
+		}
+
+		// Checks for bool status, if true, in order to play sound effect
+		if (closeStove == true) {
+			
+			// Plays the specified sound effect
+			audio.PlayOneShot (stoveClose);
+			
+			// Resets the bool back to false
+			closeStove = false;
+		}
+
+		// Checks for bool status, if true, in order to play sound effect
+		if (openStove == true) {
+			
+			// Plays the specified sound effect
+			audio.PlayOneShot (stoveOpen);
+			
+			// Resets the bool back to false
+			openStove = false;
+		}
+
+		// Checks for bool status, if true, in order to play sound effect
+		if (closeCupboard == true) {
+			
+			// Plays the specified sound effect
+			audio.PlayOneShot (cupboardClose);
+			
+			// Resets the bool back to false
+			closeCupboard = false;
+		}
+		
+		// Checks for bool status, if true, in order to play sound effect
+		if (openCupboard == true) {
+			
+			// Plays the specified sound effect
+			audio.PlayOneShot (cupboardOpen);
+			
+			// Resets the bool back to false
+			openCupboard = false;
+		}
+
+		// Checks for bool status, if true, in order to play sound effect
+		if (closeChest == true) {
+			
+			// Plays the specified sound effect
+			audio.PlayOneShot (chestClose);
+			
+			// Resets the bool back to false
+			closeChest = false;
+		}
+		
+		// Checks for bool status, if true, in order to play sound effect
+		if (openChest == true) {
+			
+			// Plays the specified sound effect
+			audio.PlayOneShot (chestOpen);
+			
+			// Resets the bool back to false
+			openChest = false;
 		}
 	}
 }

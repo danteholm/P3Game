@@ -3,6 +3,13 @@ using System.Collections;
 
 public class userInterface : MonoBehaviour {
 
+	/*
+	 ***************************************************** 
+	 * THIS SCRIPT HANDLES GENERAL GUI ELEMENTS THAT ARE *
+	 * DISPLAY TO THE PLAYER WHILE PLAYING THE GAME!!    *
+	 *****************************************************
+	 */
+
 	// Bool used to determine when to display the inventory bar
 	public bool inventoryOn;
 	// Variables used to store the images for the UI
@@ -12,13 +19,13 @@ public class userInterface : MonoBehaviour {
 	public Texture2D uiGotItem;
 	public Texture2D uiPromptClose;
 	// Item icons
-	public Texture2D uiBedroomKey, uiHallKey, uiKitchenKey, uiBathroomKey, uiSecretKey;
+	public Texture2D uiBedroomKey, uiHallKey, uiKitchenKey, uiBathroomKey, uiSecretKey, uiWireCutter;
 	// Notes
 	public Texture2D uiPaperNote, uiNote1;
 	// Newspapers
 	public Texture2D uiNewspaper1, uiNewspaper2, uiNewspaper3;
 	// Hints
-	public Texture2D uiHint1, uiHint2, uiHint3;
+	public Texture2D uiHint1, uiHint2, uiHint3, uiSelfie;
 	// Private variable for the player and camera object
 	GameObject mainCamera;
 	GameObject player;
@@ -28,7 +35,7 @@ public class userInterface : MonoBehaviour {
 
 		// Loads the camera through the variable defined above
 		mainCamera = GameObject.Find ("Main Camera");
-		player = GameObject.FindWithTag ("Player");
+		player = GameObject.Find ("Player");
 	}
 
 	void OnGUI () {
@@ -38,7 +45,7 @@ public class userInterface : MonoBehaviour {
 		   ---------- */
 
 		if (inventoryOn == true) {
-			GUI.DrawTexture (new Rect (0, Screen.width/2-15, Screen.width, 100), uiBar);
+			//GUI.DrawTexture (new Rect (0, Screen.width/2-15, Screen.width, 100), uiBar);
 
 			/* ------------
 				ITEM ICONS
@@ -67,6 +74,11 @@ public class userInterface : MonoBehaviour {
 			// Checks if player has the item
 			if (player.GetComponent<items>().hasSecretKey == true) {
 				GUI.DrawTexture (new Rect (Screen.width/3.25f, Screen.height/1.13f, 60, 73), uiSecretKey);
+			}
+
+			// Checks if player has the item
+			if (player.GetComponent<items>().hasWireCutter == true) {
+				GUI.DrawTexture (new Rect (Screen.width/1f-105, Screen.height/1.13f+8, 90, 67), uiWireCutter);
 			}
 
 			/* -----------
@@ -128,6 +140,11 @@ public class userInterface : MonoBehaviour {
 		// Checks if player is reading the note attached to the hall key
 		if (player.GetComponent<items>().hasFirstNote == true) {
 			GUI.DrawTexture (new Rect (Screen.width/3f, 5, 502, 728), uiNote1);
+		}
+
+		// Checks if player is reading the note attached to the hall key
+		if (player.GetComponent<items>().hasSelfie == true) {
+			GUI.DrawTexture (new Rect (Screen.width/4f-35, Screen.height/6f, 825, 475), uiSelfie);
 		}
 
 		// Checks if player is reading the first newspaper

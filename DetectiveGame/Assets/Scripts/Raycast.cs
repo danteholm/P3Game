@@ -3,6 +3,13 @@ using System.Collections;
 
 public class Raycast : MonoBehaviour {
 
+	/*
+	 ************************************************* 
+	 * THIS SCRIPT HANDLES /ALL/ RAYCASTING AND USER *
+	 * INTERACTION WITH OBJECTS IN THE GAME!!        *
+	 *************************************************
+	 */
+
 	// Distance, and object interaction variables, for the Raycast
 	public float distance;
 	RaycastHit objectHit;
@@ -11,9 +18,13 @@ public class Raycast : MonoBehaviour {
 	public bool playerGotItem;
 	public bool doorIsLocked;
 	public bool uiPrompt;
-	// Private variable for the player object
+	// Private variable for the objects used for interaction
 	GameObject player;
 	GameObject mainCamera;
+	GameObject bomb;
+	GameObject keyPad;
+	GameObject sounds;
+	GameObject voices;
 	// Bools to open and close objects
 	bool bedroomDoorClosed = true;
 	bool kitchenDoor1Closed = true;
@@ -28,12 +39,19 @@ public class Raycast : MonoBehaviour {
 	bool bedroomChestClosed = true;
 	bool hallwayDresserClosed = true;
 	bool livingRoomChestClosed = true;
+	// Bools for voice overs
+	bool selfiePlayed;
+	bool stovePlayed;
 
 	void Start () {
 
 		// Defines the player object for the created variable at the top of the script
-		player = GameObject.FindWithTag ("Player");
+		player = GameObject.Find ("Player");
 		mainCamera = GameObject.Find ("Main Camera");
+		bomb = GameObject.Find ("Old-timer bomb prefab");
+		keyPad = GameObject.Find ("KeyPad");
+		sounds = GameObject.Find ("SFX");
+		voices = GameObject.Find ("VO");
 	}
 
 	void Update () {
@@ -52,7 +70,7 @@ public class Raycast : MonoBehaviour {
 				imLookingAt = true;
 
 				// Outputs a debug message to indicate what object you collided with
-				Debug.Log ("Object: "+objectHit.collider.gameObject.name);
+				//Debug.Log ("Object: "+objectHit.collider.gameObject.name);
 
 				// Runs if the player presses E while near an object
 				if (Input.GetKeyDown (KeyCode.E) || Input.GetKeyDown (KeyCode.Mouse0)) {
@@ -80,10 +98,10 @@ public class Raycast : MonoBehaviour {
 							lockdown();
 
 							// Prompt
-							StartCoroutine("Prompt");
+							Prompt();
 							
 							// Toggles bool to true, which is used for sound effects
-							player.GetComponent<soundEffects>().gotKey = true;
+							sounds.GetComponent<soundEffects>().gotKey = true;
 							
 							// Destroys the object that you interacted with
 							Destroy (objectHit.collider.gameObject);
@@ -96,7 +114,10 @@ public class Raycast : MonoBehaviour {
 							player.GetComponent<items>().hasKitchenKey = true;
 							
 							// Toggles bool to true, which is used for sound effects
-							player.GetComponent<soundEffects>().gotKey = true;
+							sounds.GetComponent<soundEffects>().gotKey = true;
+
+							// Camera switch turned on
+							player.GetComponent<cameraSwitch>().switchCamAngle = true;
 							
 							// Destroys the object that you interacted with
 							Destroy (objectHit.collider.gameObject);
@@ -109,8 +130,14 @@ public class Raycast : MonoBehaviour {
 							player.GetComponent<items>().hasSecretKey = true;
 							
 							// Toggles bool to true, which is used for sound effects
-							player.GetComponent<soundEffects>().gotKey = true;
-							
+							sounds.GetComponent<soundEffects>().gotKey = true;
+
+							// Toggle voice over
+							voices.GetComponent<voiceOvers>().lastKey = true;
+
+							// Camera switch turned on
+							player.GetComponent<cameraSwitch>().switchCamAngle = true;
+
 							// Destroys the object that you interacted with
 							Destroy (objectHit.collider.gameObject);
 							
@@ -130,7 +157,10 @@ public class Raycast : MonoBehaviour {
 							Prompt();
 
 							// Toggles bool to true, which is used for sound effects
-							player.GetComponent<soundEffects>().gotKey = true;
+							sounds.GetComponent<soundEffects>().gotKey = true;
+
+							// Toggle voice over
+							voices.GetComponent<voiceOvers>().secondKey = true;
 							
 							// Destroys the object that you interacted with
 							Destroy (objectHit.collider.gameObject);
@@ -143,7 +173,10 @@ public class Raycast : MonoBehaviour {
 							player.GetComponent<items>().hasLivingRoomKey = true;
 							
 							// Toggles bool to true, which is used for sound effects
-							player.GetComponent<soundEffects>().gotKey = true;
+							sounds.GetComponent<soundEffects>().gotKey = true;
+
+							// Camera switch turned on
+							player.GetComponent<cameraSwitch>().switchCamAngle = true;
 							
 							// Destroys the object that you interacted with
 							Destroy (objectHit.collider.gameObject);
@@ -156,7 +189,7 @@ public class Raycast : MonoBehaviour {
 							player.GetComponent<items>().hasNote = true;
 							
 							// Toggles bool to true, which is used for sound effects
-							player.GetComponent<soundEffects>().gotPaper = true;
+							sounds.GetComponent<soundEffects>().gotPaper = true;
 						}
 						
 						// Checks if the object you collide with is the item type labeled "firstClue"
@@ -166,7 +199,7 @@ public class Raycast : MonoBehaviour {
 							player.GetComponent<items>().hasClue1 = true;
 							
 							// Toggles bool to true, which is used for sound effects
-							player.GetComponent<soundEffects>().gotPaper = true;
+							sounds.GetComponent<soundEffects>().gotPaper = true;
 							
 							// Destroys the object that you interacted with
 							Destroy (objectHit.collider.gameObject);
@@ -187,17 +220,20 @@ public class Raycast : MonoBehaviour {
 								if (bedroomDoorClosed) {
 
 									// Toggles bool to true, which is used for sound effects
-									player.GetComponent<soundEffects>().openDoor = true;
-									player.GetComponent<soundEffects>().activeTik = true;
+									sounds.GetComponent<soundEffects>().openDoor = true;
+									sounds.GetComponent<soundEffects>().activeTik = true;
 									
 									// Plays the animation to open door
 									GameObject.Find("bedroomDoor").animation.Play("open");
 									
 									// Starts the timer
-									mainCamera.GetComponent<timer>().timerOn = true;
+									bomb.GetComponent<timer>().timerOn = true;
 
 									// Toggles bool
 									bedroomDoorClosed = !bedroomDoorClosed;
+
+									// Camera switch turned on
+									player.GetComponent<cameraSwitch>().switchCamAngle = true;
 								}
 								
 							// If required object isn't in your inventory
@@ -207,7 +243,7 @@ public class Raycast : MonoBehaviour {
 								doorIsLocked = true;
 								
 								// Toggles bool to true, which is used for sound effects
-								player.GetComponent<soundEffects>().doorIsLocked = true;
+								sounds.GetComponent<soundEffects>().doorIsLocked = true;
 								
 								// For now, outputs a debug message until GUI elements have been created and implemented
 								Debug.Log ("This door requires a key!");
@@ -225,7 +261,7 @@ public class Raycast : MonoBehaviour {
 								if (kitchenDoor1Closed) {
 
 									// Toggles bool to true, which is used for sound effects
-									player.GetComponent<soundEffects>().openDoor = true;
+									sounds.GetComponent<soundEffects>().openDoor = true;
 									
 									// Plays the animation to open door
 									GameObject.Find("kitchenDoor1").animation.Play("open");
@@ -233,17 +269,23 @@ public class Raycast : MonoBehaviour {
 									// Toggles bool
 									kitchenDoor1Closed = !kitchenDoor1Closed;
 
+									// Camera switch turned on
+									player.GetComponent<cameraSwitch>().switchCamAngle = true;
+
 								// If the door is not closed
 								} else {
 									
 									// Toggles bool to true, which is used for sound effects
-									player.GetComponent<soundEffects>().closeDoor = true;
+									sounds.GetComponent<soundEffects>().closeDoor = true;
 									
 									// Plays the animation to open door
 									GameObject.Find("kitchenDoor1").animation.Play("close");
 									
 									// Toggles bool
 									kitchenDoor1Closed = !kitchenDoor1Closed;
+
+									// Camera switch turned on
+									player.GetComponent<cameraSwitch>().switchCamAngle = true;
 								}
 									
 							// If required object isn't in your inventory
@@ -253,7 +295,7 @@ public class Raycast : MonoBehaviour {
 								doorIsLocked = true;
 									
 								// Toggles bool to true, which is used for sound effects
-								player.GetComponent<soundEffects>().doorIsLocked = true;
+								sounds.GetComponent<soundEffects>().doorIsLocked = true;
 									
 								// For now, outputs a debug message until GUI elements have been created and implemented
 								Debug.Log ("This door requires a key!");
@@ -271,25 +313,31 @@ public class Raycast : MonoBehaviour {
 								if (kitchenDoor2Closed) {
 								
 									// Toggles bool to true, which is used for sound effects
-									player.GetComponent<soundEffects>().openDoor = true;
+									sounds.GetComponent<soundEffects>().openDoor = true;
 									
 									// Plays the animation to open door
 									GameObject.Find("kitchenDoor2").animation.Play("open");
 
 									// Toggles bool
 									kitchenDoor2Closed = !kitchenDoor2Closed;
+
+									// Camera switch turned on
+									player.GetComponent<cameraSwitch>().switchCamAngle = true;
 								
 								// If the door is not closed
 								} else {
 									
 									// Toggles bool to true, which is used for sound effects
-									player.GetComponent<soundEffects>().closeDoor = true;
+									sounds.GetComponent<soundEffects>().closeDoor = true;
 									
 									// Plays the animation to open door
 									GameObject.Find("kitchenDoor2").animation.Play("close");
 									
 									// Toggles bool
 									kitchenDoor2Closed = !kitchenDoor2Closed;
+
+									// Camera switch turned on
+									player.GetComponent<cameraSwitch>().switchCamAngle = true;
 								}
 								
 							// If required object isn't in your inventory
@@ -299,7 +347,7 @@ public class Raycast : MonoBehaviour {
 								doorIsLocked = true;
 								
 								// Toggles bool to true, which is used for sound effects
-								player.GetComponent<soundEffects>().doorIsLocked = true;
+								sounds.GetComponent<soundEffects>().doorIsLocked = true;
 								
 								// For now, outputs a debug message until GUI elements have been created and implemented
 								Debug.Log ("This door requires a key!");
@@ -317,25 +365,31 @@ public class Raycast : MonoBehaviour {
 								if (bathroomDoorClosed) {
 								
 									// Toggles bool to true, which is used for sound effects
-									player.GetComponent<soundEffects>().openDoor = true;
+									sounds.GetComponent<soundEffects>().openDoor = true;
 									
 									// Plays the animation to open door
 									GameObject.Find("bathroomDoor").animation.Play("open");
 
 									// Toggles bool
 									bathroomDoorClosed = !bathroomDoorClosed;
+
+									// Camera switch turned on
+									player.GetComponent<cameraSwitch>().switchCamAngle = true;
 								
 								// If the door is not closed
 								} else {
 									
 									// Toggles bool to true, which is used for sound effects
-									player.GetComponent<soundEffects>().closeDoor = true;
+									sounds.GetComponent<soundEffects>().closeDoor = true;
 									
 									// Plays the animation to open door
 									GameObject.Find("bathroomDoor").animation.Play("close");
 									
 									// Toggles bool
 									bathroomDoorClosed = !bathroomDoorClosed;
+
+									// Camera switch turned on
+									player.GetComponent<cameraSwitch>().switchCamAngle = true;
 								}
 								
 							// If required object isn't in your inventory
@@ -345,7 +399,7 @@ public class Raycast : MonoBehaviour {
 								doorIsLocked = true;
 								
 								// Toggles bool to true, which is used for sound effects
-								player.GetComponent<soundEffects>().doorIsLocked = true;
+								sounds.GetComponent<soundEffects>().doorIsLocked = true;
 								
 								// For now, outputs a debug message until GUI elements have been created and implemented
 								Debug.Log ("This door requires a key!");
@@ -363,25 +417,31 @@ public class Raycast : MonoBehaviour {
 								if (livingRoomDoorClosed) {
 
 									// Toggles bool to true, which is used for sound effects
-									player.GetComponent<soundEffects>().openDoor = true;
+									sounds.GetComponent<soundEffects>().openDoor = true;
 									
 									// Plays the animation to open door
 									GameObject.Find("livingroomDoor").animation.Play("open");
 
 									// Toggles bool
 									livingRoomDoorClosed = !livingRoomDoorClosed;
+
+									// Camera switch turned on
+									player.GetComponent<cameraSwitch>().switchCamAngle = true;
 								
 								// If the door is not closed
 								} else {
 
 									// Toggles bool to true, which is used for sound effects
-									player.GetComponent<soundEffects>().closeDoor = true;
+									sounds.GetComponent<soundEffects>().closeDoor = true;
 									
 									// Plays the animation to open door
 									GameObject.Find("livingroomDoor").animation.Play("close");
 									
 									// Toggles bool
 									livingRoomDoorClosed = !livingRoomDoorClosed;
+
+									// Camera switch turned on
+									player.GetComponent<cameraSwitch>().switchCamAngle = true;
 								}
 								
 							// If required object isn't in your inventory
@@ -391,7 +451,7 @@ public class Raycast : MonoBehaviour {
 								doorIsLocked = true;
 								
 								// Toggles bool to true, which is used for sound effects
-								player.GetComponent<soundEffects>().doorIsLocked = true;
+								sounds.GetComponent<soundEffects>().doorIsLocked = true;
 								
 								// For now, outputs a debug message until GUI elements have been created and implemented
 								Debug.Log ("This door requires a key!");
@@ -405,25 +465,31 @@ public class Raycast : MonoBehaviour {
 							if (officeDoorClosed) {
 
 								// Toggles bool to true, which is used for sound effects
-								player.GetComponent<soundEffects>().openDoor = true;
+								sounds.GetComponent<soundEffects>().openDoor = true;
 								
 								// Plays the animation to open door
 								GameObject.Find("officeDoor").animation.Play("open");
 
 								// Toggles bool
 								officeDoorClosed = !officeDoorClosed;
+
+								// Camera switch turned on
+								player.GetComponent<cameraSwitch>().switchCamAngle = true;
 							
 							// If the door is not closed
 							} else {
 
 								// Toggles bool to true, which is used for sound effects
-								player.GetComponent<soundEffects>().closeDoor = true;
+								sounds.GetComponent<soundEffects>().closeDoor = true;
 								
 								// Plays the animation to open door
 								GameObject.Find("officeDoor").animation.Play("close");
 								
 								// Toggles bool
 								officeDoorClosed = !officeDoorClosed;
+
+								// Camera switch turned on
+								player.GetComponent<cameraSwitch>().switchCamAngle = true;
 							}
 						}
 
@@ -433,12 +499,20 @@ public class Raycast : MonoBehaviour {
 							
 							// Checks, through the items script, if the player has the required key to open this door
 							if (player.GetComponent<items>().hasSecretKey == true) {
-								
+
 								// Toggles bool to true, which is used for sound effects
-								player.GetComponent<soundEffects>().openDoor = true;
+								sounds.GetComponent<soundEffects>().openDoor = true;
+
+								// If the bomb has been disarmed when opening the front door
+								if (bomb.GetComponent<timer>().isWireCut == true) {
+
+									Application.LoadLevel ("win-disarm");
 								
-								//load win Animation
-								Application.LoadLevel ("win");
+								// If it has not been disarmed
+								} else {
+
+									Application.LoadLevel ("win");
+								}
 								
 							// If required object isn't in your inventory
 							} else {
@@ -447,7 +521,7 @@ public class Raycast : MonoBehaviour {
 								doorIsLocked = true;
 								
 								// Toggles bool to true, which is used for sound effects
-								player.GetComponent<soundEffects>().doorIsLocked = true;
+								sounds.GetComponent<soundEffects>().doorIsLocked = true;
 								
 								// For now, outputs a debug message until GUI elements have been created and implemented
 								Debug.Log ("This door requires a key!");
@@ -462,19 +536,19 @@ public class Raycast : MonoBehaviour {
 						if (objectHit.collider.gameObject.GetComponent<objectManager>().whatPuzzle == objectManager.Puzzle.keyPad) {
 
 							// If the puzzle has not been solved
-							if (mainCamera.GetComponent<puzzleScript>().puzzleComplete == false) {
+							if (keyPad.GetComponent<puzzleScript>().puzzleComplete == false) {
 
 								// Toggles off system so you can do puzzles
 								lockdown();
 
 								// Activates puzzle
-								mainCamera.GetComponent<puzzleScript>().keypadPuzzle = true;
+								keyPad.GetComponent<puzzleScript>().keypadPuzzle = true;
 							
 							// If the puzzle has been solved
-							} else if (mainCamera.GetComponent<puzzleScript>().puzzleComplete == true) {
+							} else if (keyPad.GetComponent<puzzleScript>().puzzleComplete == true) {
 
 								// Toggles bool to true, which is used for sound effects
-								player.GetComponent<soundEffects>().errorSound = true;
+								sounds.GetComponent<soundEffects>().errorSound = true;
 							}
 						}
 					}
@@ -487,7 +561,7 @@ public class Raycast : MonoBehaviour {
 						if (objectHit.collider.gameObject.GetComponent<objectManager>().whatObjectAmI == objectManager.InteractiveObject.bomb) {
 
 							// Show the timer on the screen
-							mainCamera.GetComponent<timer>().displayTimer = true;
+							bomb.GetComponent<timer>().displayTimer = true;
 							
 							// Shuts off all systems
 							lockdown();
@@ -496,10 +570,30 @@ public class Raycast : MonoBehaviour {
 							Prompt();
 						}
 
+						// Checks if the object you collide with is the killer selfie
+						if (objectHit.collider.gameObject.GetComponent<objectManager>().whatObjectAmI == objectManager.InteractiveObject.killerSelfie) {
+							
+							// Show the newspaper on the screen
+							player.GetComponent<items>().hasSelfie = true;
+							
+							// Shuts off all systems
+							lockdown();
+							
+							// Prompt
+							Prompt();
+
+							// Only play selfie voice over once
+							if (selfiePlayed == false) {
+								voices.GetComponent<voiceOvers>().killerSelfie = true;
+
+								selfiePlayed = true;
+							}
+						}
+
 						// Checks if the object you collide with is the first newspaper
 						if (objectHit.collider.gameObject.GetComponent<objectManager>().whatObjectAmI == objectManager.InteractiveObject.newspaper1) {
 							
-							// Show the timer on the screen
+							// Show the newspaper on the screen
 							player.GetComponent<items>().readFirstNewspaper = true;
 							
 							// Shuts off all systems
@@ -512,7 +606,7 @@ public class Raycast : MonoBehaviour {
 						// Checks if the object you collide with is the second newspaper
 						if (objectHit.collider.gameObject.GetComponent<objectManager>().whatObjectAmI == objectManager.InteractiveObject.newspaper2) {
 							
-							// Show the timer on the screen
+							// Show the newspaper on the screen
 							player.GetComponent<items>().readSecondNewspaper = true;
 							
 							// Shuts off all systems
@@ -525,7 +619,7 @@ public class Raycast : MonoBehaviour {
 						// Checks if the object you collide with is the third newspaper
 						if (objectHit.collider.gameObject.GetComponent<objectManager>().whatObjectAmI == objectManager.InteractiveObject.newspaper3) {
 							
-							// Show the timer on the screen
+							// Show the newspaper on the screen
 							player.GetComponent<items>().readThirdNewspaper = true;
 							
 							// Shuts off all systems
@@ -538,7 +632,7 @@ public class Raycast : MonoBehaviour {
 						// Checks if the object you collide with is the first hint
 						if (objectHit.collider.gameObject.GetComponent<objectManager>().whatHintIsThis == objectManager.Hints.hint1) {
 							
-							// Show the timer on the screen
+							// Show the hint on the screen
 							player.GetComponent<items>().readHint1 = true;
 							
 							// Shuts off all systems
@@ -551,7 +645,7 @@ public class Raycast : MonoBehaviour {
 						// Checks if the object you collide with is the second hint
 						if (objectHit.collider.gameObject.GetComponent<objectManager>().whatHintIsThis == objectManager.Hints.hint2) {
 							
-							// Show the timer on the screen
+							// Show the hint on the screen
 							player.GetComponent<items>().readHint2 = true;
 							
 							// Shuts off all systems
@@ -564,7 +658,7 @@ public class Raycast : MonoBehaviour {
 						// Checks if the object you collide with is the third hint
 						if (objectHit.collider.gameObject.GetComponent<objectManager>().whatHintIsThis == objectManager.Hints.hint3) {
 							
-							// Show the timer on the screen
+							// Show the hint on the screen
 							player.GetComponent<items>().readHint3 = true;
 							
 							// Shuts off all systems
@@ -578,10 +672,13 @@ public class Raycast : MonoBehaviour {
 						if (objectHit.collider.gameObject.GetComponent<objectManager>().whatObjectAmI == objectManager.InteractiveObject.globusRotate) {
 
 							// Toggles bool to true, which is used for sound effects
-							//player.GetComponent<soundEffects>().openDoor = true;
+							//sounds.GetComponent<soundEffects>().openDoor = true;
 
 							// Plays the animation to open door
 							GameObject.Find("globe").animation.Play("rotation");
+
+							// Camera switch turned on
+							player.GetComponent<cameraSwitch>().switchCamAngle = true;
 						}
 
 						// Globus latch, to open and close it
@@ -591,23 +688,29 @@ public class Raycast : MonoBehaviour {
 							if (globusClosed) {
 
 								// Toggles bool to true, which is used for sound effects
-								//player.GetComponent<soundEffects>().openDoor = true;
+								//sounds.GetComponent<soundEffects>().openDoor = true;
 								
 								// Plays the animation to open door
 								GameObject.Find("globe").animation.Play("open");
 
 								globusClosed = !globusClosed;
+
+								// Camera switch turned on
+								player.GetComponent<cameraSwitch>().switchCamAngle = true;
 							
 							// If the globus is not closed
 							} else {
 
 								// Toggles bool to true, which is used for sound effects
-								//player.GetComponent<soundEffects>().openDoor = true;
+								//sounds.GetComponent<soundEffects>().openDoor = true;
 
 								// Plays the animation to open door
 								GameObject.Find("globe").animation.Play("close");
 
 								globusClosed = !globusClosed;
+
+								// Camera switch turned on
+								player.GetComponent<cameraSwitch>().switchCamAngle = true;
 							}
 						}
 
@@ -618,23 +721,29 @@ public class Raycast : MonoBehaviour {
 							if (bedroomTable1Closed) {
 
 								// Toggles bool to true, which is used for sound effects
-								//player.GetComponent<soundEffects>().openDoor = true;
+								sounds.GetComponent<soundEffects>().openCupboard = true;
 								
 								// Plays the animation to open door
 								GameObject.Find("bedsideTable1").animation.Play("open");
 								
 								bedroomTable1Closed = !bedroomTable1Closed;
+
+								// Camera switch turned on
+								player.GetComponent<cameraSwitch>().switchCamAngle = true;
 								
 							// If not closed
 							} else {
 								
 								// Toggles bool to true, which is used for sound effects
-								//player.GetComponent<soundEffects>().openDoor = true;
+								sounds.GetComponent<soundEffects>().closeCupboard = true;
 								
 								// Plays the animation to open door
 								GameObject.Find("bedsideTable1").animation.Play("close");
 								
 								bedroomTable1Closed = !bedroomTable1Closed;
+
+								// Camera switch turned on
+								player.GetComponent<cameraSwitch>().switchCamAngle = true;
 							}
 						}
 
@@ -645,23 +754,29 @@ public class Raycast : MonoBehaviour {
 							if (bedroomTable2Closed) {
 								
 								// Toggles bool to true, which is used for sound effects
-								//player.GetComponent<soundEffects>().openDoor = true;
+								sounds.GetComponent<soundEffects>().openCupboard = true;
 								
 								// Plays the animation to open door
 								GameObject.Find("bedsideTable2").animation.Play("open");
 								
 								bedroomTable2Closed = !bedroomTable2Closed;
+
+								// Camera switch turned on
+								player.GetComponent<cameraSwitch>().switchCamAngle = true;
 								
 							// If not closed
 							} else {
 								
 								// Toggles bool to true, which is used for sound effects
-								//player.GetComponent<soundEffects>().openDoor = true;
+								sounds.GetComponent<soundEffects>().closeCupboard = true;
 								
 								// Plays the animation to open door
 								GameObject.Find("bedsideTable2").animation.Play("close");
 								
 								bedroomTable2Closed = !bedroomTable2Closed;
+
+								// Camera switch turned on
+								player.GetComponent<cameraSwitch>().switchCamAngle = true;
 							}
 						}
 
@@ -672,23 +787,29 @@ public class Raycast : MonoBehaviour {
 							if (bedroomChestClosed) {
 								
 								// Toggles bool to true, which is used for sound effects
-								//player.GetComponent<soundEffects>().openDoor = true;
+								sounds.GetComponent<soundEffects>().openChest = true;
 								
 								// Plays the animation to open door
 								GameObject.Find("chest1").animation.Play("open");
 								
 								bedroomChestClosed = !bedroomChestClosed;
+
+								// Camera switch turned on
+								player.GetComponent<cameraSwitch>().switchCamAngle = true;
 								
-								// If not closed
+							// If not closed
 							} else {
 								
 								// Toggles bool to true, which is used for sound effects
-								//player.GetComponent<soundEffects>().openDoor = true;
+								sounds.GetComponent<soundEffects>().closeChest = true;
 								
 								// Plays the animation to open door
 								GameObject.Find("chest1").animation.Play("close");
 								
 								bedroomChestClosed = !bedroomChestClosed;
+
+								// Camera switch turned on
+								player.GetComponent<cameraSwitch>().switchCamAngle = true;
 							}
 						}
 
@@ -699,23 +820,29 @@ public class Raycast : MonoBehaviour {
 							if (hallwayDresserClosed) {
 								
 								// Toggles bool to true, which is used for sound effects
-								//player.GetComponent<soundEffects>().openDoor = true;
+								sounds.GetComponent<soundEffects>().openCupboard = true;
 								
 								// Plays the animation to open door
 								GameObject.Find("sideboard1").animation.Play("open");
 								
 								hallwayDresserClosed = !hallwayDresserClosed;
+
+								// Camera switch turned on
+								player.GetComponent<cameraSwitch>().switchCamAngle = true;
 								
-								// If not closed
+							// If not closed
 							} else {
 								
 								// Toggles bool to true, which is used for sound effects
-								//player.GetComponent<soundEffects>().openDoor = true;
+								sounds.GetComponent<soundEffects>().closeCupboard = true;
 								
 								// Plays the animation to open door
 								GameObject.Find("sideboard1").animation.Play("close");
 								
 								hallwayDresserClosed = !hallwayDresserClosed;
+
+								// Camera switch turned on
+								player.GetComponent<cameraSwitch>().switchCamAngle = true;
 							}
 						}
 
@@ -726,23 +853,39 @@ public class Raycast : MonoBehaviour {
 							if (stoveClosed) {
 								
 								// Toggles bool to true, which is used for sound effects
-								//player.GetComponent<soundEffects>().openDoor = true;
-								
+								sounds.GetComponent<soundEffects>().openStove = true;
+
+								// If voice over hasn't been heard before
+								if (stovePlayed == false) {
+
+									// Toggle voice over
+									voices.GetComponent<voiceOvers>().stove = true;
+
+									// Toggles true so the voice over won't be played again
+									stovePlayed = true;
+								}
+
 								// Plays the animation to open door
 								GameObject.Find("stove2").animation.Play("opened");
 								
 								stoveClosed = !stoveClosed;
+
+								// Camera switch turned on
+								player.GetComponent<cameraSwitch>().switchCamAngle = true;
 								
 							// If not closed
 							} else {
 								
 								// Toggles bool to true, which is used for sound effects
-								//player.GetComponent<soundEffects>().openDoor = true;
+								sounds.GetComponent<soundEffects>().closeStove = true;
 								
 								// Plays the animation to open door
 								GameObject.Find("stove2").animation.Play("closed");
 								
 								stoveClosed = !stoveClosed;
+
+								// Camera switch turned on
+								player.GetComponent<cameraSwitch>().switchCamAngle = true;
 							}
 						}
 
@@ -753,24 +896,46 @@ public class Raycast : MonoBehaviour {
 							if (livingRoomChestClosed) {
 								
 								// Toggles bool to true, which is used for sound effects
-								//player.GetComponent<soundEffects>().openDoor = true;
+								sounds.GetComponent<soundEffects>().openChest = true;
 								
 								// Plays the animation to open door
 								GameObject.Find("chest2").animation.Play("open");
 								
 								livingRoomChestClosed = !livingRoomChestClosed;
+
+								// Camera switch turned on
+								player.GetComponent<cameraSwitch>().switchCamAngle = true;
 								
-								// If not closed
+							// If not closed
 							} else {
 								
 								// Toggles bool to true, which is used for sound effects
-								//player.GetComponent<soundEffects>().openDoor = true;
-								
+								sounds.GetComponent<soundEffects>().closeChest = true;
+							
 								// Plays the animation to open door
 								GameObject.Find("chest2").animation.Play("close");
 								
 								livingRoomChestClosed = !livingRoomChestClosed;
+
+								// Camera switch turned on
+								player.GetComponent<cameraSwitch>().switchCamAngle = true;
 							}
+						}
+
+						// Checks if the object you collide with is the wirecutter
+						if (objectHit.collider.gameObject.GetComponent<objectManager>().whatTypeItem == objectManager.Items.wireCutter) {
+							
+							// Toggles the bool, from the item script, to true when item is picked up
+							player.GetComponent<items>().hasWireCutter = true;
+							
+							// Toggles bool to true, which is used for sound effects
+							sounds.GetComponent<soundEffects>().gotKey = true;
+
+							// Camera switch turned on
+							player.GetComponent<cameraSwitch>().switchCamAngle = true;
+							
+							// Destroys the object that you interacted with
+							Destroy (objectHit.collider.gameObject);
 						}
 					}
 				}
@@ -790,7 +955,7 @@ public class Raycast : MonoBehaviour {
 			if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Mouse1)) {
 			
 				// If player looking at the timer
-				if (mainCamera.GetComponent<timer>().displayTimer == true) {
+				if (bomb.GetComponent<timer>().displayTimer == true) {
 
 					// Turns the systems back on
 					lockdown();
@@ -799,14 +964,14 @@ public class Raycast : MonoBehaviour {
 					Prompt();
 					
 					// Toggles note off again
-					mainCamera.GetComponent<timer>().displayTimer = false;
+					bomb.GetComponent<timer>().displayTimer = false;
 				}
 
 				// If player is reading the starting note
 				if (player.GetComponent<items>().hasNote == true) {
 
 					// Toggles bool to true, which is used for sound effects
-					player.GetComponent<soundEffects>().gotPaper = true;
+					sounds.GetComponent<soundEffects>().gotPaper = true;
 
 					// Turns the systems back on
 					lockdown();
@@ -822,7 +987,7 @@ public class Raycast : MonoBehaviour {
 				if (player.GetComponent<items>().hasFirstNote == true) {
 						
 					// Toggles bool to true, which is used for sound effects
-					player.GetComponent<soundEffects>().gotPaper = true;
+					sounds.GetComponent<soundEffects>().gotPaper = true;
 						
 					// Turns the systems back on
 					lockdown();
@@ -834,11 +999,27 @@ public class Raycast : MonoBehaviour {
 					player.GetComponent<items>().hasFirstNote = false;
 				}
 
+				// If player is looking at the killer selfie
+				if (player.GetComponent<items>().hasSelfie == true) {
+					
+					// Toggles bool to true, which is used for sound effects
+					sounds.GetComponent<soundEffects>().gotPaper = true;
+					
+					// Turns the systems back on
+					lockdown();
+					
+					// Turns prompt off
+					Prompt();
+					
+					// Toggles note off again
+					player.GetComponent<items>().hasSelfie = false;
+				}
+
 				// If player is reading the first newspaper
 				if (player.GetComponent<items>().readFirstNewspaper == true) {
 					
 					// Toggles bool to true, which is used for sound effects
-					player.GetComponent<soundEffects>().gotPaper = true;
+					sounds.GetComponent<soundEffects>().gotPaper = true;
 					
 					// Turns the systems back on
 					lockdown();
@@ -854,7 +1035,7 @@ public class Raycast : MonoBehaviour {
 				if (player.GetComponent<items>().readSecondNewspaper == true) {
 					
 					// Toggles bool to true, which is used for sound effects
-					player.GetComponent<soundEffects>().gotPaper = true;
+					sounds.GetComponent<soundEffects>().gotPaper = true;
 					
 					// Turns the systems back on
 					lockdown();
@@ -870,7 +1051,7 @@ public class Raycast : MonoBehaviour {
 				if (player.GetComponent<items>().readThirdNewspaper == true) {
 					
 					// Toggles bool to true, which is used for sound effects
-					player.GetComponent<soundEffects>().gotPaper = true;
+					sounds.GetComponent<soundEffects>().gotPaper = true;
 					
 					// Turns the systems back on
 					lockdown();
@@ -886,7 +1067,7 @@ public class Raycast : MonoBehaviour {
 				if (player.GetComponent<items>().readHint1 == true) {
 					
 					// Toggles bool to true, which is used for sound effects
-					player.GetComponent<soundEffects>().gotPaper = true;
+					sounds.GetComponent<soundEffects>().gotPaper = true;
 					
 					// Turns the systems back on
 					lockdown();
@@ -902,7 +1083,7 @@ public class Raycast : MonoBehaviour {
 				if (player.GetComponent<items>().readHint2 == true) {
 					
 					// Toggles bool to true, which is used for sound effects
-					player.GetComponent<soundEffects>().gotPaper = true;
+					sounds.GetComponent<soundEffects>().gotPaper = true;
 					
 					// Turns the systems back on
 					lockdown();
@@ -918,7 +1099,7 @@ public class Raycast : MonoBehaviour {
 				if (player.GetComponent<items>().readHint3 == true) {
 					
 					// Toggles bool to true, which is used for sound effects
-					player.GetComponent<soundEffects>().gotPaper = true;
+					sounds.GetComponent<soundEffects>().gotPaper = true;
 					
 					// Turns the systems back on
 					lockdown();

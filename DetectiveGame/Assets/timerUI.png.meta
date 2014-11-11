@@ -1,8 +1,7 @@
 fileFormatVersion: 2
-guid: 291ebb9ee2d34534eb549eafaa44a25d
+guid: be60d7b2d71c0c04a91db7d061bdc837
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: timerUI
+  fileIDToRecycleName: {}
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

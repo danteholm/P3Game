@@ -3,13 +3,19 @@ using System.Collections;
 
 public class objectManager : MonoBehaviour {
 
-	// Use this script to create new types. Not the previous ones
+	/*
+	 ************************************************* 
+	 * THIS SCRIPT HANDLES ALL THE BEHIND THE SCENES *
+	 * FUNCTIONALITY OF OBJECTS IN THE GAME THAT ARE *
+	 * USED FOR ANY AND ALL USER INTERACTION!!       *
+	 *************************************************
+	 */
 
 	// Enums are used to define the various types of objects available
 	public enum Doors {none, frontDoor, bedroomDoor, bathroomDoor, kitchenDoor1, kitchenDoor2, officeDoor, livingRoomDoor}
 	public enum Keys {none, bedroomKey, kitchenKey, secretKey, hallKey, livingRoomKey}
-	public enum Items {none, paperNote, firstClue, secondClue}
-	public enum InteractiveObject {none, bomb, newspaper1, newspaper2, newspaper3, globusRotate, globusOpen, stove, bedroomTable1, bedroomTable2, hallwayDresser, bedroomChest, livingRoomChest}
+	public enum Items {none, paperNote, firstClue, secondClue, wireCutter}
+	public enum InteractiveObject {none, bomb, killerSelfie, newspaper1, newspaper2, newspaper3, globusRotate, globusOpen, stove, bedroomTable1, bedroomTable2, hallwayDresser, bedroomChest, livingRoomChest}
 	public enum Hints {none, hint1, hint2, hint3}
 	public enum Puzzle {none, keyPad}
 

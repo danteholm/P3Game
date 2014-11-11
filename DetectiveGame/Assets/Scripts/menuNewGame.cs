@@ -3,7 +3,7 @@ using System.Collections;
 
 public class menuNewGame : MonoBehaviour {
 
-	// Bool to determine when to render the hover effect
+	// GUIStyle that, via the Unity inspector, defines the style for the menu buttons
 	public GUIStyle menuButton;
 
 	// Draw button

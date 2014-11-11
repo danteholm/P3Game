@@ -3,11 +3,17 @@ using System.Collections;
 
 public class puzzleScript : MonoBehaviour {
 
+	/*
+	 **************************************************** 
+	 * THIS SCRIPT HANDLES THE PUZZLE FUNCTIONALITY FOR *
+	 * THE KEYPAD OBJECT IN THE GAME!!                  *
+	 ****************************************************
+	 */
+
 	// Bool used to determine when a puzzle is active, or complete
 	public bool keypadPuzzle = false;
 	public bool puzzleComplete = false;
 	// Graphics for puzzles
-	//public Texture2D puzzleBackground;
 	public Texture2D uiKeypad;
 	// Font for input field
 	public Font Digital;
@@ -25,12 +31,16 @@ public class puzzleScript : MonoBehaviour {
 	// Private variable for the player object
 	GameObject player;
 	GameObject mainCamera;
+	GameObject sounds;
+	GameObject voices;
 
 	void Start () {
 
 		// Defines the player object for the created variable at the top of the script
-		player = GameObject.FindWithTag ("Player");
+		player = GameObject.Find ("Player");
 		mainCamera = GameObject.Find ("Main Camera");
+		sounds = GameObject.Find ("SFX");
+		voices = GameObject.Find ("VO");
 	}
 
 	// Submit function for the keypad
@@ -40,8 +50,8 @@ public class puzzleScript : MonoBehaviour {
 		if (inputOutput == keyCode) {
 
 			// Toogle bool on to play sound effect
-			player.GetComponent<soundEffects>().successSound = true;
-			player.GetComponent<soundEffects>().bookcaseMoving = true;
+			sounds.GetComponent<soundEffects>().successSound = true;
+			sounds.GetComponent<soundEffects>().bookcaseMoving = true;
 			
 			// Puzzle mode toggle
 			puzzleMode();
@@ -51,7 +61,7 @@ public class puzzleScript : MonoBehaviour {
 
 			// Play animation on bookshelf
 			GameObject.Find ("bookshelfOffice").animation.Play("bookcase");
-			
+
 			// Call puzzle reset
 			resetNumbers();
 
@@ -59,7 +69,7 @@ public class puzzleScript : MonoBehaviour {
 		} else {
 
 			// Toogle bool on to play sound effect
-			player.GetComponent<soundEffects>().errorSound = true;
+			sounds.GetComponent<soundEffects>().errorSound = true;
 
 			// Call puzzle reset
 			resetNumbers();
@@ -280,7 +290,7 @@ public class puzzleScript : MonoBehaviour {
 		mainCamera.GetComponent<MouseLook>().cutSceneOn = !mainCamera.GetComponent<MouseLook>().cutSceneOn;
 
 		// Toggles puzzle, and inventory
-		mainCamera.GetComponent<puzzleScript>().keypadPuzzle = !mainCamera.GetComponent<puzzleScript>().keypadPuzzle;
+		keypadPuzzle = !keypadPuzzle;
 		mainCamera.GetComponent<userInterface>().inventoryOn = !mainCamera.GetComponent<userInterface>().inventoryOn;
 	}
 
@@ -295,7 +305,7 @@ public class puzzleScript : MonoBehaviour {
 	// Play sound effect when clicking button
 	void buttonSound () {
 
-		player.GetComponent<soundEffects>().keypadSound = true;
+		sounds.GetComponent<soundEffects>().keypadSound = true;
 	}
 
 	// Button press script
@@ -330,6 +340,6 @@ public class puzzleScript : MonoBehaviour {
 		yield return new WaitForSeconds(1);
 		
 		// Toggle bool for sound effect
-		player.GetComponent<soundEffects>().bookcaseMoving = true;
+		sounds.GetComponent<soundEffects>().bookcaseMoving = true;
 	}
 }

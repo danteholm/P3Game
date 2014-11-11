@@ -13,6 +13,13 @@ MonoImporter:
   - error: {fileID: 8300000, guid: fcb2bfc7cab5165458cb98adae1dcfe7, type: 3}
   - success: {fileID: 8300000, guid: dfb9f2bd6a4fbc94fa1ea7a6199be6cb, type: 3}
   - bookcase: {fileID: 8300000, guid: 002f357960ddfcd4faf3af4526303d0d, type: 3}
+  - explode: {instanceID: 0}
+  - stoveClose: {fileID: 8300000, guid: 327c12613570dc342bdec2567adc7c55, type: 3}
+  - stoveOpen: {fileID: 8300000, guid: 461b8d255bacf4249b7801cec6a7834c, type: 3}
+  - cupboardClose: {fileID: 8300000, guid: 3d782845aa821154ab38d1c4c28adc2a, type: 3}
+  - cupboardOpen: {fileID: 8300000, guid: 744694b144bc95549a0de661d621701a, type: 3}
+  - chestClose: {fileID: 8300000, guid: 8c3dbc6a87623dc4b9faae29068c27b0, type: 3}
+  - chestOpen: {fileID: 8300000, guid: c440fe4515ed82c43b873c01341a2db8, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -2,7 +2,9 @@ fileFormatVersion: 2
 guid: 0887e5538051a114199c61d9e799f916
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - uiKeypad: {fileID: 2800000, guid: 795df01b35fce214789f782ed066115c, type: 3}
+  - Digital: {fileID: 12800000, guid: 6c3da7059f05ba14bbe08f2bbeedef5c, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

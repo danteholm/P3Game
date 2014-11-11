@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 52fb1debd20d7e844a196ad112f7c35a
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - halfTimeVoice: {fileID: 8300000, guid: 2741706953d10ad4c84f7f326d29a5e8, type: 3}
+  - oneMinuteLeftVoice: {fileID: 8300000, guid: f58e982adc743ef4baf9634c7097069c,
+      type: 3}
+  - bombNotDisarmedVoice: {fileID: 8300000, guid: 75044224e2d1f8344b0afe8cfd626892,
+      type: 3}
+  - bombDisarmedVoice: {fileID: 8300000, guid: 9a04e4969b1a5a347b5e28df4efb27fd, type: 3}
+  - deathVoice: {fileID: 8300000, guid: 6e2b6630ff800924c8d09839f7ed3776, type: 3}
+  - killerSelfieVoice: {fileID: 8300000, guid: 31ec8cd3048893a41abac71f2e576a61, type: 3}
+  - secondKeyVoice: {fileID: 8300000, guid: dd1462fc05bc6dc4f813b1c2023d39f1, type: 3}
+  - lastKeyVoice: {fileID: 8300000, guid: 0fa5da555afa44c4fad26c5880a57366, type: 3}
+  - paintingsVoice: {fileID: 8300000, guid: e7d3c34c1e72018469e3248f43a1fd1e, type: 3}
+  - moralChoiceVoice: {fileID: 8300000, guid: 4abe2c5266395264cb00042adf64d091, type: 3}
+  - secretRoomVoice: {fileID: 8300000, guid: 23da1d55deb665e4898bdccc089436e3, type: 3}
+  - stoveVoice: {fileID: 8300000, guid: 67ef709e4016fe8479ebdfc567a7d3ee, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 

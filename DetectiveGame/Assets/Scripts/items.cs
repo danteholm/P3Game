@@ -3,12 +3,17 @@ using System.Collections;
 
 public class items : MonoBehaviour {
 
-	// Rudimentary item system, used to toggle items in the inventory, for now
+	/*
+	 ************************************************* 
+	 * THIS SCRIPT HANDLES ALL THE BEHIND THE SCENES *
+	 * FUNCTIONALITY OF THE USER'S INVENTORY!!       *
+	 *************************************************
+	 */
 
-	// Key variables
-	public bool hasKitchenKey, hasLivingRoomKey, hasHallKey, hasSecretKey, hasBedroomKey;
-	// Misc. item variables
-	public bool hasNote, hasFirstNote, hasSecondNote, hasThirdNote, hasClue1;
+	// Inventory variables
+	public bool hasKitchenKey, hasLivingRoomKey, hasHallKey, hasSecretKey, hasBedroomKey, hasWireCutter;
+	// Notes
+	public bool hasNote, hasFirstNote, hasSecondNote, hasThirdNote, hasClue1, hasSelfie;
 	// Newspapers
 	public bool readFirstNewspaper, readSecondNewspaper, readThirdNewspaper;
 	// Hints
