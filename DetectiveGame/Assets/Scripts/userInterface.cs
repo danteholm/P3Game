@@ -78,7 +78,7 @@ public class userInterface : MonoBehaviour {
 
 			// Checks if player has the item
 			if (player.GetComponent<items>().hasWireCutter == true) {
-				GUI.DrawTexture (new Rect (Screen.width/1f-105, Screen.height/1.13f+8, 90, 67), uiWireCutter);
+				GUI.DrawTexture (new Rect (Screen.width/1f-105, Screen.height/1.13f+8, 90, 66), uiWireCutter);
 			}
 
 			/* -----------

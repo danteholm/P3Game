@@ -57,7 +57,7 @@ public class cameraSwitch : MonoBehaviour {
 	IEnumerator camSwitch () {
 
 		// Yields when time is up
-		yield return new WaitForSeconds(0.7f);
+		yield return new WaitForSeconds(2.5f);
 
 		// Switch back to the default camera angle
 		switchCamAngle = false;

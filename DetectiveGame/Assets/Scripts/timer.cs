@@ -126,11 +126,13 @@ public class timer : MonoBehaviour {
 				   ---------- */
 
 				// When the player cuts the red wire
-				if (GUI.Button(new Rect(Screen.width/2f+25, Screen.height/1.5f-60, buttonWidth, buttonHeight), "CUT THE RED WIRE", wire)) {
+				if (GUI.Button(new Rect(Screen.width/2f+25, Screen.height/1.5f-60, buttonWidth, buttonHeight), "CUT THE YELLOW WIRE", wire)) {
 
-					// Toggle puzzle off since the correct wire was cut
-					isWireCut = true;
-
+					// Explosive sound
+					Explosion();
+					
+					// End game
+					Application.LoadLevel("lose");
 				}
 
 				// When the player cuts the green wire
@@ -154,13 +156,10 @@ public class timer : MonoBehaviour {
 				}
 
 				// When the player cuts the yellow wire
-				if (GUI.Button(new Rect(Screen.width/2f+25, Screen.height/1.5f+60, buttonWidth, buttonHeight), "CUT THE YELLOW WIRE", wire)) {
+				if (GUI.Button(new Rect(Screen.width/2f+25, Screen.height/1.5f+60, buttonWidth, buttonHeight), "CUT THE RED WIRE", wire)) {
 
-					// Explosive sound
-					Explosion();
-
-					// End game
-					Application.LoadLevel("lose");
+					// Toggle puzzle off since the correct wire was cut
+					isWireCut = true;
 				}
 
 				// When the player cuts the purple wire

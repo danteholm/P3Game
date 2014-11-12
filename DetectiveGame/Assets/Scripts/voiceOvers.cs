@@ -3,6 +3,8 @@ using System.Collections;
 
 public class voiceOvers : MonoBehaviour {
 
+	// Define the audio source itself
+	public AudioSource _voiceOver;
 	// Variables for the voice overs
 	public AudioClip halfTimeVoice;
 	public AudioClip oneMinuteLeftVoice;
@@ -34,55 +36,64 @@ public class voiceOvers : MonoBehaviour {
 
 		if (halfTime) {
 
-			audio.PlayOneShot (halfTimeVoice);
+			_voiceOver.clip = halfTimeVoice;
+			_voiceOver.Play();
 			halfTime = false;
 		}
 
 		if (oneMinuteLeft) {
 			
-			audio.PlayOneShot (oneMinuteLeftVoice);
+			_voiceOver.clip = oneMinuteLeftVoice;
+			_voiceOver.Play();
 			oneMinuteLeft = false;
 		}
 
 		if (secondKey) {
 			
-			audio.PlayOneShot (secondKeyVoice);
+			_voiceOver.clip = secondKeyVoice;
+			_voiceOver.Play();
 			secondKey = false;
 		}
 
 		if (lastKey) {
 			
-			audio.PlayOneShot (lastKeyVoice);
+			_voiceOver.clip = lastKeyVoice;
+			_voiceOver.Play();
 			lastKey = false;
 		}
 
 		if (stove) {
 			
-			audio.PlayOneShot (stoveVoice);
+			_voiceOver.clip = stoveVoice;
+			_voiceOver.Play();
 			stove = false;
 		}
 
 		if (paintings) {
 
-			audio.PlayOneShot (paintingsVoice);
+			_voiceOver.clip = paintingsVoice;
+			_voiceOver.Play();
 			paintings = false;
 		}
 
 		if (secretRoom) {
 
-			audio.PlayOneShot (secretRoomVoice);
+			_voiceOver.clip = secretRoomVoice;
+			_voiceOver.Play();
 			secretRoom = false;
 		}
 
 		if (killerSelfie) {
 			
-			audio.PlayOneShot (killerSelfieVoice);
+			_voiceOver.clip = killerSelfieVoice;
+			_voiceOver.Play();
 			killerSelfie = false;
 		}
 
 		if (moralChoice) {
 			
-			audio.PlayOneShot (moralChoiceVoice);
+			_voiceOver.clip = moralChoiceVoice;
+			_voiceOver.Play();
 			moralChoice = false;
 		}
 	}
