@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\codeOnWall.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CharacterControls.cs">
     <Files>
-      <File FileName="Assets\codeOnWall.cs" Line="4" Column="1" />
+      <File FileName="Assets\Scripts\CharacterControls.cs" Line="71" Column="9" />
+      <File FileName="Assets\MovementAnimsetProLite\Scripts\InputWalk.cs" Line="40" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
