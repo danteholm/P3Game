@@ -6,6 +6,7 @@ public class voiceOvers : MonoBehaviour {
 	// Define the audio source itself
 	public AudioSource _voiceOver;
 	// Variables for the voice overs
+	public AudioClip awakenVoice;
 	public AudioClip halfTimeVoice;
 	public AudioClip oneMinuteLeftVoice;
 	public AudioClip bombNotDisarmedVoice;
@@ -18,7 +19,9 @@ public class voiceOvers : MonoBehaviour {
 	public AudioClip moralChoiceVoice;
 	public AudioClip secretRoomVoice;
 	public AudioClip stoveVoice;
+	public AudioClip bombWasDisarmedVoice;
 	// Variables used to toggle /when/ to play the voice overs
+	public bool awaken;
 	public bool halfTime;
 	public bool oneMinuteLeft;
 	public bool bombNotDisarmed;
@@ -31,8 +34,16 @@ public class voiceOvers : MonoBehaviour {
 	public bool moralChoice;
 	public bool secretRoom;
 	public bool stove;
+	public bool bombWasDisarmed;
 
 	void Update () {
+
+		if (awaken == false) {
+
+			_voiceOver.clip = awakenVoice;
+			_voiceOver.Play();
+			awaken = true;
+		}
 
 		if (halfTime) {
 
@@ -95,6 +106,13 @@ public class voiceOvers : MonoBehaviour {
 			_voiceOver.clip = moralChoiceVoice;
 			_voiceOver.Play();
 			moralChoice = false;
+		}
+
+		if (bombWasDisarmed) {
+			
+			_voiceOver.clip = bombWasDisarmedVoice;
+			_voiceOver.Play();
+			bombWasDisarmed = false;
 		}
 	}
 }
